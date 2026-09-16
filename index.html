@@ -25,7 +25,7 @@
         <a href="#lokality">Kam chodíme?</a>
         <a href="#cenik">Ceník</a>
         <a href="#bezpecnost">Bezpečnost</a>
-        <a class="nav-cta" href="#rezervace">Rezervovat</a>
+        <a class="nav-cta" href="#rezervace" data-booking-trigger>Rezervovat</a>
       </nav>
     </header>
 
@@ -41,7 +41,7 @@
             a být prostě zase na chvíli sami sebou.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#rezervace">Rezervovat</a>
+            <a class="button primary" href="#rezervace" data-booking-trigger>Rezervovat</a>
             <a class="button ghost" href="#jak-to-funguje">Jak to funguje?</a>
           </div>
         </div>
@@ -377,7 +377,7 @@
         <div class="closing-content">
           <h2>Ať má váš pes den, na který se bude těšit.</h2>
           <p>Začněte vstupním testovacím dnem – uvidíte sami, jak vypadá pořádně unavený a spokojený pes.</p>
-          <a class="button light" href="#rezervace">Rezervovat</a>
+          <a class="button light" href="#rezervace" data-booking-trigger>Rezervovat</a>
         </div>
       </section>
     </main>
@@ -394,7 +394,7 @@
           <a href="#lokality">Kam chodíme</a>
           <a href="#cenik">Ceník</a>
           <a href="#bezpecnost">Bezpečnost</a>
-          <a href="#rezervace">Rezervace</a>
+          <a href="#rezervace" data-booking-trigger>Rezervace</a>
         </div>
         <div class="footer-col">
           <h2>Kontakt</h2>
@@ -409,6 +409,75 @@
       </div>
     </footer>
 
+    <div class="booking-modal" id="booking-modal" aria-hidden="true">
+      <div class="booking-modal-backdrop" data-close-booking></div>
+      <div class="booking-modal-panel" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+        <header class="booking-modal-header">
+          <div class="booking-modal-title-row">
+            <h2 id="booking-modal-title" class="booking-range">—</h2>
+            <button type="button" class="booking-modal-close" data-close-booking aria-label="Zavřít kalendář">&times;</button>
+          </div>
+          <div class="booking-modal-controls">
+            <div class="booking-view-toggle" role="tablist" aria-label="Zobrazení kalendáře">
+              <button type="button" class="booking-view-btn" data-view="agenda" role="tab">Agenda</button>
+              <button type="button" class="booking-view-btn" data-view="day" role="tab">Den</button>
+              <button type="button" class="booking-view-btn is-active" data-view="week" role="tab" aria-selected="true">Týden</button>
+            </div>
+            <div class="booking-nav">
+              <button type="button" class="booking-nav-btn" data-nav="prev" aria-label="Předchozí období">‹</button>
+              <button type="button" class="booking-nav-btn booking-nav-today" data-nav="today">Dnes</button>
+              <button type="button" class="booking-nav-btn" data-nav="next" aria-label="Další období">›</button>
+            </div>
+          </div>
+        </header>
+
+        <div class="booking-modal-body">
+          <div class="booking-calendar" id="booking-calendar" aria-live="polite"></div>
+
+          <div class="booking-form-view" id="booking-form-view" hidden>
+            <button type="button" class="booking-back" data-booking-back>‹ Zpět na kalendář</button>
+            <h3 class="booking-slot-title" id="booking-slot-title"></h3>
+            <p class="booking-slot-meta" id="booking-slot-meta"></p>
+
+            <form class="booking-form booking-modal-form" id="booking-slot-form">
+              <label>
+                Jméno psa
+                <input type="text" name="dog-name" autocomplete="off" required>
+              </label>
+              <label>
+                Plemeno
+                <input type="text" name="breed" autocomplete="off">
+              </label>
+              <label>
+                Jméno a příjmení
+                <input type="text" name="name" autocomplete="name" required>
+              </label>
+              <label>
+                Telefon
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567" required>
+              </label>
+              <label class="full">
+                E-mail
+                <input type="email" name="email" autocomplete="email" required>
+              </label>
+              <label class="full">
+                Poznámka (nepovinné)
+                <textarea name="note" rows="3" placeholder="Cokoliv, co bychom o vašem psovi měli vědět předem…"></textarea>
+              </label>
+              <button class="button primary" type="submit">Odeslat registraci</button>
+              <p class="form-note">Nejde o závaznou objednávku, jen o poptávku. Ozveme se vám do 24 hodin.</p>
+            </form>
+
+            <div class="booking-form-success" id="booking-form-success" hidden>
+              <p>Díky! Termín jsme pro vás předběžně zapsali a ozveme se vám na e-mail nebo telefon.</p>
+              <button type="button" class="button primary" data-booking-back>Zpět na kalendář</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="booking.js"></script>
   </body>
 </html>
