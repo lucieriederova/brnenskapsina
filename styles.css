@@ -43,7 +43,8 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-synthesis: none;
   line-height: 1.55;
 }
 
@@ -82,7 +83,7 @@ textarea {
 .brand {
   display: flex;
   align-items: center;
-  width: clamp(126px, 16vw, 190px);
+  width: clamp(110px, 14vw, 158px);
   height: 54px;
   overflow: hidden;
 }
@@ -92,7 +93,6 @@ textarea {
   height: 100%;
   object-fit: contain;
   object-position: left center;
-  transform: scale(1.15);
 }
 
 .site-nav {
@@ -179,11 +179,12 @@ textarea {
   position: relative;
   z-index: 1;
   margin-top: auto;
+  margin-bottom: clamp(36px, 6vw, 76px);
   width: min(44vw, 580px);
   padding: clamp(28px, 4.5vw, 46px) clamp(36px, 6vw, 72px) clamp(40px, 6vw, 58px) clamp(24px, 5vw, 48px);
   color: #fff;
   background: var(--blue);
-  border-radius: 0 45% 30% 0 / 0 65% 55% 0;
+  border-radius: 0 45% 35% 8px / 0 60% 55% 8px;
 }
 
 .hero-panel p {
@@ -193,6 +194,7 @@ textarea {
   font-size: 1.05rem;
   font-weight: 400;
   line-height: 1.4;
+  text-transform: uppercase;
 }
 
 .hero-panel .button {
@@ -308,7 +310,8 @@ h3 {
   max-width: 720px;
   margin: 18px auto 0;
   color: var(--muted);
-  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .section-heading.compact {
@@ -417,7 +420,8 @@ h3 {
   max-width: 480px;
   margin: 0;
   color: var(--blue);
-  font-weight: 700;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .step-row:nth-child(even) .step-copy p {
@@ -664,7 +668,8 @@ h3 {
   max-width: 620px;
   margin: 0;
   color: rgba(255, 255, 255, 0.78);
-  font-weight: 800;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 
 .safety-media {
@@ -740,6 +745,7 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
 }
 
 .booking-form label {
@@ -783,6 +789,7 @@ h3 {
 .booking-form button {
   justify-self: start;
   cursor: pointer;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
 }
 
 .form-note {
@@ -838,6 +845,7 @@ h3 {
   padding: 42px clamp(18px, 5vw, 70px) 0;
   color: var(--blue);
   background: #f4f4fb;
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
 }
 
 .footer-top {
@@ -850,7 +858,9 @@ h3 {
 .footer-brand img {
   width: 60px;
   height: 60px;
-  object-fit: cover;
+  padding: 8px;
+  object-fit: contain;
+  background: var(--blue);
   border-radius: 12px;
 }
 
