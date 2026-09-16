@@ -299,17 +299,21 @@
       </section>
 
       <section class="section contact" id="rezervace" aria-labelledby="contact-title">
-        <div class="contact-copy">
-          <p class="eyebrow">Máte konkrétní den?</p>
-          <h2 id="contact-title">Nesedí vám žádný termín?</h2>
-          <p>
-            Napište nám a společně najdeme výlet, který zapadne do vašeho týdne
-            i do temperamentu vašeho psa.
-          </p>
-          <p>
-            Telefonicky se ozveme zpět, kde doladíme balíček, logistiku vyzvednutí
-            a všechny důležité detaily.
-          </p>
+        <div class="contact-header">
+          <div class="contact-copy">
+            <p>
+              Řekněte nám o svém psovi a co byste chtěli vyzkoušet – ozveme se do 24 hodin
+              a společně domluvíme termín, i mimo aktuálně otevřené sloty.
+            </p>
+            <p>
+              Testovací den je vždy první krok, bez ohledu na zvolený balíček. Balíček
+              i lokalitu můžete po testovacím dni ještě upravit.
+            </p>
+          </div>
+          <div class="contact-heading">
+            <h2 id="contact-title">Nesedí vám žádný termín?</h2>
+            <p class="contact-tagline">Napište nám</p>
+          </div>
         </div>
         <form class="booking-form">
           <label>
@@ -321,20 +325,30 @@
             <input type="text" name="breed" autocomplete="off">
           </label>
           <label>
-            Věk psa
+            Věk psa (roky)
             <input type="text" name="age" autocomplete="off">
           </label>
           <label>
             Preferovaný balíček
             <select name="package">
-              <option>Vyberte balíček</option>
+              <option value="">Vyberte balíček</option>
               <option>Jednorázová exkurze</option>
-              <option>2 týdně</option>
-              <option>3 týdně</option>
+              <option>2× týdně</option>
+              <option>3× týdně</option>
             </select>
           </label>
           <label class="full">
-            Preferovaný datum
+            Preferovaná lokalita / čtvrť
+            <select name="location">
+              <option value="">Vyberte čtvrť</option>
+              <option>Podkomorské lesy / Bystrc</option>
+              <option>Mariánské údolí</option>
+              <option>Soběšice</option>
+              <option>Bílá hora</option>
+            </select>
+          </label>
+          <label class="full">
+            Preferované datum
             <input type="date" name="date">
           </label>
           <label>
@@ -343,18 +357,18 @@
           </label>
           <label>
             Telefon
-            <input type="tel" name="phone" autocomplete="tel">
+            <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567">
           </label>
           <label class="full">
             E-mail
             <input type="email" name="email" autocomplete="email">
           </label>
           <label class="full">
-            Poznámka
-            <textarea name="note" rows="4" placeholder="Cokoliv, co bychom o vašem psovi měli vědět předem..."></textarea>
+            Poznámka (nepovinné)
+            <textarea name="note" rows="4" placeholder="Cokoliv, co bychom o vašem psovi měli vědět předem…"></textarea>
           </label>
           <button class="button primary" type="submit">Odeslat poptávku</button>
-          <p class="form-note">Na zprávu odpovídáme co nejdříve, zpravidla do jednoho pracovního dne.</p>
+          <p class="form-note">Nejde o závaznou objednávku, jen o poptávku.</p>
         </form>
       </section>
 
