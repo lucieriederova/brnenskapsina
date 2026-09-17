@@ -251,12 +251,12 @@ textarea {
   position: relative;
   z-index: 1;
   margin-top: auto;
-  margin-bottom: clamp(36px, 6vw, 76px);
+  margin-bottom: 0;
   width: min(44vw, 580px);
   padding: clamp(28px, 4.5vw, 46px) clamp(36px, 6vw, 72px) clamp(40px, 6vw, 58px) clamp(24px, 5vw, 48px);
   color: #fff;
   background: var(--blue);
-  border-radius: 0 45% 35% 8px / 0 60% 55% 8px;
+  border-radius: 0 45% 0 0 / 0 60% 0 0;
 }
 
 .hero-panel p {
@@ -1189,7 +1189,7 @@ h3 {
     width: calc(100% - 24px);
     padding: 28px 28px 40px;
     clip-path: none;
-    border-radius: 0 28px 28px 0;
+    border-radius: 0 28px 0 0;
   }
 
   .hero-panel p {
