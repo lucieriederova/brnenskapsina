@@ -30,7 +30,7 @@
   --radius: 8px;
   --max: 1160px;
   --hero-panel-w: min(44vw, 580px);
-  --how-blob-w: min(var(--hero-panel-w), 220px);
+  --how-blob-w: var(--hero-panel-w);
 }
 
 * {
@@ -442,6 +442,7 @@ h3 {
 }
 
 .how .section-heading p:not(.eyebrow) {
+  max-width: 440px;
   color: var(--blue);
 }
 
@@ -452,7 +453,7 @@ h3 {
   flex-direction: column;
   gap: clamp(44px, 7vw, 84px);
   width: min(var(--max), 100%);
-  margin: max(0px, calc(var(--how-blob-w) - 340px)) auto 0;
+  margin: max(0px, calc(var(--how-blob-w) - 300px)) auto 0;
 }
 
 .step-row {
