@@ -31,6 +31,7 @@
   --max: 1160px;
   --hero-panel-w: min(44vw, 580px);
   --how-blob-w: var(--hero-panel-w);
+  --how-blob-h: clamp(300px, 30vw, 360px);
 }
 
 * {
@@ -413,11 +414,11 @@ h3 {
 
 .how-blob {
   position: absolute;
-  top: calc(var(--how-blob-w) * -1);
+  top: calc(var(--how-blob-h) * -1);
   left: calc(var(--how-blob-w) * -1);
   z-index: 0;
   width: calc(var(--how-blob-w) * 2);
-  height: calc(var(--how-blob-w) * 2);
+  height: calc(var(--how-blob-h) * 2);
   border-radius: 50%;
   background: var(--blue);
 }
@@ -453,7 +454,7 @@ h3 {
   flex-direction: column;
   gap: clamp(44px, 7vw, 84px);
   width: min(var(--max), 100%);
-  margin: max(0px, calc(var(--how-blob-w) - 300px)) auto 0;
+  margin: 0 auto;
 }
 
 .step-row {
@@ -1153,6 +1154,7 @@ h3 {
   :root {
     --hero-panel-w: calc(100vw - 24px);
     --how-blob-w: clamp(200px, 26vw, 240px);
+    --how-blob-h: clamp(200px, 26vw, 240px);
   }
 
   .nav-toggle {
