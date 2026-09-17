@@ -408,11 +408,19 @@ h3 {
 
 .step-num {
   display: block;
-  margin-bottom: -0.22em;
+  margin-bottom: -0.2em;
   color: #e7e6f4;
-  font-size: clamp(3rem, 6.5vw, 5.2rem);
+  font-size: clamp(4rem, 9vw, 7.6rem);
   font-weight: 950;
   line-height: 0.8;
+}
+
+.step-row:nth-child(odd) .step-num {
+  margin-left: clamp(-8px, -2.5vw, -36px);
+}
+
+.step-row:nth-child(even) .step-num {
+  margin-right: clamp(-8px, -2.5vw, -36px);
 }
 
 .step-copy h3 {
@@ -654,10 +662,11 @@ h3 {
 
 .safety-num {
   display: block;
-  margin-bottom: -0.2em;
+  margin-bottom: -0.18em;
+  margin-left: clamp(-8px, -2.5vw, -32px);
   color: rgba(255, 255, 255, 0.16);
   font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  font-size: clamp(2.6rem, 5.6vw, 4.6rem);
+  font-size: clamp(3.4rem, 7.5vw, 6.4rem);
   font-weight: 400;
   line-height: 0.8;
 }
