@@ -1154,8 +1154,7 @@ h3 {
 @media (max-width: 900px) {
   :root {
     --hero-panel-w: calc(100vw - 24px);
-    --how-blob-w: clamp(200px, 26vw, 240px);
-    --how-blob-h: clamp(200px, 26vw, 240px);
+    --how-blob-h: clamp(150px, 38vw, 190px);
   }
 
   .nav-toggle {
@@ -1244,7 +1243,7 @@ h3 {
   }
 
   .how .section-heading.right {
-    margin-top: calc(var(--how-blob-w) - 36px);
+    margin-top: max(0px, calc(var(--how-blob-h) - 60px));
   }
 
   .step-row,
