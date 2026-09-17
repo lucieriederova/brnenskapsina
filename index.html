@@ -14,8 +14,13 @@
     <link rel="icon" type="image/png" sizes="192x192" href="PUBLIC/favicon/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="PUBLIC/favicon/apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
+    <noscript>
+      <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar"></div></div>
+
     <header class="site-header" id="top">
       <a class="brand" href="#top" aria-label="Brněnská psina">
         <img src="PUBLIC/icons/logo-white.png" alt="Brněnská psina logo">
@@ -54,7 +59,7 @@
 
       <section class="section how" id="jak-to-funguje" aria-labelledby="how-title">
         <div class="how-blob" aria-hidden="true"></div>
-        <div class="section-heading right">
+        <div class="section-heading right reveal">
           <h2 id="how-title">Jak to funguje?</h2>
           <p>
             Chápeme, že svěřit psa cizím lidem na celý den chce trochu odvahy. Proto vám přesně
@@ -64,7 +69,7 @@
         </div>
 
         <div class="steps-list">
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/5.png" alt="Pes se protahuje" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">01</span>
@@ -76,7 +81,7 @@
             </div>
           </article>
 
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/6.png" alt="Buldoček sedí" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">02</span>
@@ -89,7 +94,7 @@
             </div>
           </article>
 
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/7.png" alt="Pes se skvrnou na boku" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">03</span>
@@ -102,7 +107,7 @@
             </div>
           </article>
 
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/8.png" alt="Jezevčík na procházce" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">04</span>
@@ -116,7 +121,7 @@
             </div>
           </article>
 
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/9.png" alt="Fotoaparát" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">05</span>
@@ -128,7 +133,7 @@
             </div>
           </article>
 
-          <article class="step-row">
+          <article class="step-row reveal">
             <div class="step-media"><img src="PUBLIC/icons/10.png" alt="Odpočívající pes" loading="lazy"></div>
             <div class="step-copy">
               <span class="step-num">06</span>
@@ -145,7 +150,7 @@
 
       <section class="locations" id="lokality" aria-labelledby="locations-title">
         <div class="content-band">
-          <div class="section-heading inverse">
+          <div class="section-heading inverse reveal">
             <h2 id="locations-title">Kam vlastně chodíme?</h2>
             <p>
               Chodíme tam, kde mají psi prostor běžet, čichat a bezpečně poznávat svět.
@@ -153,7 +158,7 @@
             </p>
           </div>
           <div class="map-cloud" aria-label="Lokality venčení">
-            <div class="map-pin">
+            <div class="map-pin reveal">
               <h3>Podkomorské lesy / Bystrc</h3>
               <div class="map-embed">
                 <iframe
@@ -164,7 +169,7 @@
                 ></iframe>
               </div>
             </div>
-            <div class="map-pin offset">
+            <div class="map-pin offset reveal">
               <h3>Mariánské údolí</h3>
               <div class="map-embed">
                 <iframe
@@ -175,7 +180,7 @@
                 ></iframe>
               </div>
             </div>
-            <div class="map-pin">
+            <div class="map-pin reveal">
               <h3>Soběšice</h3>
               <div class="map-embed">
                 <iframe
@@ -186,7 +191,7 @@
                 ></iframe>
               </div>
             </div>
-            <div class="map-pin offset">
+            <div class="map-pin offset reveal">
               <h3>Bílá hora</h3>
               <div class="map-embed">
                 <iframe
@@ -211,8 +216,8 @@
         <img class="pricing-paws pricing-paws--top" src="PUBLIC/11.png" alt="" aria-hidden="true">
         <img class="pricing-paws pricing-paws--bottom" src="PUBLIC/11.png" alt="" aria-hidden="true">
         <div class="price-wrap">
-          <h2 id="pricing-title" class="price-heading">Ceník</h2>
-          <div class="price-box">
+          <h2 id="pricing-title" class="price-heading reveal">Ceník</h2>
+          <div class="price-box reveal">
             <div class="price-box-sketch" aria-hidden="true"></div>
             <div class="price-box-inner">
               <article>
@@ -246,12 +251,12 @@
 
       <section class="safety" id="bezpecnost" aria-labelledby="safety-title">
         <div class="content-band">
-          <div class="section-heading inverse safety-heading">
+          <div class="section-heading inverse safety-heading reveal">
             <h2 id="safety-title">Bezpečnost</h2>
             <p class="safety-tagline">Ať víte, komu psa svěřujete</p>
           </div>
           <div class="safety-list">
-            <article class="safety-row">
+            <article class="safety-row reveal">
               <div class="safety-copy">
                 <span class="safety-num">01</span>
                 <h3>Certifikace vozidla a boxů</h3>
@@ -263,7 +268,7 @@
               <div class="safety-media"><img src="PUBLIC/icons/12.png" alt="Dodávka s pejskem u volantu" loading="lazy"></div>
             </article>
 
-            <article class="safety-row">
+            <article class="safety-row reveal">
               <div class="safety-copy">
                 <span class="safety-num">02</span>
                 <h3>Pojištění odpovědnosti</h3>
@@ -275,7 +280,7 @@
               <div class="safety-media"><img src="PUBLIC/icons/13.png" alt="Pes si zakrývá packou oči" loading="lazy"></div>
             </article>
 
-            <article class="safety-row">
+            <article class="safety-row reveal">
               <div class="safety-copy">
                 <span class="safety-num">03</span>
                 <h3>O bezpečnostních incidentech</h3>
@@ -288,7 +293,7 @@
               <div class="safety-media"><img src="PUBLIC/icons/14.png" alt="Dva nedůvěřiví pejsci se založenýma packama" loading="lazy"></div>
             </article>
 
-            <article class="safety-row">
+            <article class="safety-row reveal">
               <div class="safety-copy">
                 <span class="safety-num">04</span>
                 <h3>Osobní pohovor a testovací den</h3>
@@ -305,7 +310,7 @@
 
       <section class="section contact" id="rezervace" aria-labelledby="contact-title">
         <div class="contact-header">
-          <div class="contact-copy">
+          <div class="contact-copy reveal">
             <p>
               Řekněte nám o svém psovi a co byste chtěli vyzkoušet – ozveme se do 24 hodin
               a společně domluvíme termín, i mimo aktuálně otevřené sloty.
@@ -315,12 +320,12 @@
               i lokalitu můžete po testovacím dni ještě upravit.
             </p>
           </div>
-          <div class="contact-heading">
+          <div class="contact-heading reveal">
             <h2 id="contact-title">Nesedí vám žádný termín?</h2>
             <p class="contact-tagline">Napište nám</p>
           </div>
         </div>
-        <form class="booking-form">
+        <form class="booking-form reveal">
           <label>
             Jméno psa
             <input type="text" name="dog-name" autocomplete="off">
@@ -379,7 +384,7 @@
 
       <section class="closing">
         <div class="closing-bg" aria-hidden="true"></div>
-        <div class="closing-content">
+        <div class="closing-content reveal">
           <h2>Ať má váš pes den, na který se bude těšit.</h2>
           <p>Začněte vstupním testovacím dnem – uvidíte sami, jak vypadá pořádně unavený a spokojený pes.</p>
           <a class="button light" href="#rezervace" data-booking-trigger>Rezervovat</a>
@@ -481,6 +486,8 @@
         </div>
       </div>
     </div>
+
+    <button type="button" class="back-to-top" aria-label="Zpět nahoru">↑</button>
 
     <script src="script.js"></script>
     <script src="booking.js"></script>
