@@ -29,6 +29,8 @@
   --shadow: 0 24px 70px rgba(36, 38, 95, 0.18);
   --radius: 8px;
   --max: 1160px;
+  --hero-panel-w: min(44vw, 580px);
+  --how-blob-w: min(var(--hero-panel-w), 220px);
 }
 
 * {
@@ -252,7 +254,7 @@ textarea {
   z-index: 1;
   margin-top: auto;
   margin-bottom: 0;
-  width: min(44vw, 580px);
+  width: var(--hero-panel-w);
   padding: clamp(28px, 4.5vw, 46px) clamp(36px, 6vw, 72px) clamp(40px, 6vw, 58px) clamp(24px, 5vw, 48px);
   color: #fff;
   background: var(--blue);
@@ -411,11 +413,11 @@ h3 {
 
 .how-blob {
   position: absolute;
-  top: -220px;
-  left: -220px;
+  top: calc(var(--how-blob-w) * -1);
+  left: calc(var(--how-blob-w) * -1);
   z-index: 0;
-  width: 460px;
-  height: 460px;
+  width: calc(var(--how-blob-w) * 2);
+  height: calc(var(--how-blob-w) * 2);
   border-radius: 50%;
   background: var(--blue);
 }
@@ -450,7 +452,7 @@ h3 {
   flex-direction: column;
   gap: clamp(44px, 7vw, 84px);
   width: min(var(--max), 100%);
-  margin: 0 auto;
+  margin: max(0px, calc(var(--how-blob-w) - 340px)) auto 0;
 }
 
 .step-row {
@@ -1147,6 +1149,11 @@ h3 {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --hero-panel-w: calc(100vw - 24px);
+    --how-blob-w: clamp(200px, 26vw, 240px);
+  }
+
   .nav-toggle {
     display: block;
   }
@@ -1186,7 +1193,6 @@ h3 {
   }
 
   .hero-panel {
-    width: calc(100% - 24px);
     padding: 28px 28px 40px;
     clip-path: none;
     border-radius: 0 28px 0 0;
@@ -1228,14 +1234,13 @@ h3 {
     max-width: 140px;
   }
 
-  .how-blob {
-    top: -260px;
-    left: -260px;
-  }
-
   .section-heading.right {
     width: 100%;
     margin-right: 0;
+  }
+
+  .how .section-heading.right {
+    margin-top: calc(var(--how-blob-w) - 36px);
   }
 
   .step-row,
