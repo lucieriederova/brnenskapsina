@@ -31,7 +31,7 @@
   --max: 1160px;
   --hero-panel-w: min(44vw, 580px);
   --how-blob-w: var(--hero-panel-w);
-  --how-blob-h: clamp(300px, 30vw, 360px);
+  --how-blob-h: clamp(220px, 22vw, 260px);
 }
 
 * {
@@ -574,6 +574,7 @@ h3 {
 
 .map-pin h3 {
   margin: 0 0 14px;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
   color: rgba(255, 255, 255, 0.78);
   font-size: clamp(1rem, 2.3vw, 1.7rem);
   font-weight: 400;
