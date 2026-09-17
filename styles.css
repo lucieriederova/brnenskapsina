@@ -241,6 +241,8 @@ h2 {
 
 h3 {
   margin: 0 0 8px;
+  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  color: var(--ink);
   font-size: clamp(1.05rem, 2vw, 1.35rem);
   font-weight: 950;
   line-height: 1.05;
@@ -310,8 +312,10 @@ h3 {
   max-width: 720px;
   margin: 18px auto 0;
   color: var(--muted);
+  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
+  font-size: 1.08rem;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .section-heading.compact {
@@ -414,7 +418,7 @@ h3 {
 .step-copy h3 {
   position: relative;
   z-index: 1;
-  color: var(--blue);
+  color: var(--ink);
   font-size: clamp(1.3rem, 2.4vw, 1.85rem);
 }
 
@@ -422,8 +426,10 @@ h3 {
   max-width: 480px;
   margin: 0;
   color: var(--blue);
+  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
+  font-size: 1.08rem;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .step-row:nth-child(even) .step-copy p {
@@ -442,10 +448,6 @@ h3 {
 
 .locations h2 {
   font-weight: 400;
-}
-
-.locations .section-heading p:not(.eyebrow) {
-  text-transform: uppercase;
 }
 
 .content-band {
@@ -669,9 +671,11 @@ h3 {
 .safety-copy p {
   max-width: 620px;
   margin: 0;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
+  font-size: 1.08rem;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: none;
 }
 
 .safety-media {
