@@ -408,7 +408,7 @@ h3 {
 
 .step-num {
   display: block;
-  margin-bottom: -0.2em;
+  margin-bottom: 6px;
   color: #e7e6f4;
   font-size: clamp(4rem, 9vw, 7.6rem);
   font-weight: 950;
@@ -662,7 +662,7 @@ h3 {
 
 .safety-num {
   display: block;
-  margin-bottom: -0.18em;
+  margin-bottom: 6px;
   margin-left: clamp(-8px, -2.5vw, -32px);
   color: rgba(255, 255, 255, 0.16);
   font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
