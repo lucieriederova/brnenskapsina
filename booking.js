@@ -322,12 +322,14 @@
     successEl.hidden = true;
     calendarEl.hidden = true;
     formViewEl.hidden = false;
+    modal.classList.add("is-form-view");
   }
 
   function closeBookingForm() {
     formViewEl.hidden = true;
     calendarEl.hidden = false;
     activeSlot = null;
+    modal.classList.remove("is-form-view");
   }
 
   modal.querySelectorAll("[data-booking-back]").forEach((btn) => {
@@ -353,7 +355,8 @@
     modal.setAttribute("aria-hidden", "false");
     document.body.classList.add("booking-modal-open");
     anchorDate = new Date();
-    setView("week");
+    const isNarrow = window.matchMedia("(max-width: 640px)").matches;
+    setView(isNarrow ? "agenda" : "week");
     closeBookingForm();
     window.setTimeout(() => {
       modal.querySelector(".booking-modal-close")?.focus();
