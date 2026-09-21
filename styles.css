@@ -32,7 +32,7 @@
   --hero-panel-w: min(44vw, 580px);
   --how-blob-w: var(--hero-panel-w);
   --how-blob-h: clamp(220px, 22vw, 260px);
-  --curve: clamp(22px, 4vw, 44px);
+  --curve: clamp(28px, 7vw, 100px);
 }
 
 * {
@@ -697,6 +697,7 @@ h3 {
 
 .price-box-inner h3 {
   margin: 0;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
   color: var(--blue);
   font-weight: 400;
   text-transform: uppercase;
@@ -937,7 +938,8 @@ h3 {
 .closing {
   position: relative;
   z-index: 1;
-  min-height: 360px;
+  min-height: calc(360px + var(--curve));
+  padding-bottom: var(--curve);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1880,7 +1882,7 @@ body.booking-modal-open {
 }
 
 .values,
-.audience {
+.team {
   position: relative;
   z-index: 1;
   color: #fff;
@@ -2010,112 +2012,58 @@ body.booking-modal-open {
   font-size: 0.96rem;
 }
 
-.audience-grid {
+.team-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 48px);
-  align-items: start;
+  gap: clamp(24px, 4vw, 32px);
+  margin-top: clamp(36px, 6vw, 56px);
 }
 
-@media (min-width: 860px) {
-  .audience-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+@media (min-width: 720px) {
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.audience-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 12px;
-}
-
-.audience-list li {
-  position: relative;
-  padding-left: 26px;
-  color: rgba(255, 255, 255, 0.88);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 1.02rem;
-  line-height: 1.45;
-}
-
-.audience-list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.5em;
-  width: 9px;
-  height: 9px;
-  background: #fff;
-  border-radius: 50%;
-}
-
-.persona-card {
+.team-card {
   padding: clamp(24px, 4vw, 32px);
-  color: var(--ink);
-  background: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 18px;
-  box-shadow: var(--shadow);
 }
 
-.persona-tag {
-  display: inline-block;
-  margin-bottom: 16px;
-  padding: 6px 12px;
-  color: var(--blue);
-  background: var(--soft);
-  border-radius: 999px;
-  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.persona-head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-}
-
-.persona-avatar {
+.team-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 auto;
-  width: 52px;
-  height: 52px;
-  color: #fff;
-  background: var(--blue);
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
+  color: var(--blue);
+  background: #fff;
   border-radius: 50%;
   font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
-.persona-head h3 {
-  margin: 0;
-  color: var(--blue);
-  font-size: 1.1rem;
+.team-card h3 {
+  margin: 0 0 2px;
+  color: #fff;
 }
 
-.persona-loc {
-  margin: 2px 0 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.persona-card p {
+.team-role {
   margin: 0 0 12px;
-  color: var(--muted);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 0.98rem;
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-.persona-card p:last-child {
-  margin-bottom: 0;
+.team-card p:last-child {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
+  font-size: 0.96rem;
+  line-height: 1.5;
 }
