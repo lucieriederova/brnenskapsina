@@ -1786,9 +1786,18 @@ body.booking-modal-open {
 .about-hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(48px, 12vw, 90px) clamp(18px, 5vw, 56px) clamp(76px, 12vw, 128px);
+  padding: clamp(36px, 7vw, 60px) clamp(18px, 5vw, 56px) clamp(64px, 9vw, 96px);
   color: #fff;
   background: var(--blue-dark);
+}
+
+.about-hero-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(160deg, rgba(40, 42, 103, 0.88), rgba(40, 42, 103, 0.72) 55%, rgba(40, 42, 103, 0.88)),
+    url("PUBLIC/icons/playonas.jpg") center 65% / cover no-repeat;
 }
 
 .about-hero-inner {
