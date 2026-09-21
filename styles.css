@@ -1814,12 +1814,12 @@ body.booking-modal-open {
 
 .about-hero-dog {
   position: absolute;
-  right: clamp(-40px, -2vw, 12px);
-  bottom: clamp(-20px, -1vw, 8px);
+  right: clamp(16px, 4vw, 56px);
+  bottom: clamp(12px, 2vw, 32px);
   z-index: 0;
-  width: clamp(140px, 26vw, 260px);
+  width: clamp(110px, 16vw, 190px);
   height: auto;
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .story {
