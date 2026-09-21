@@ -1809,24 +1809,6 @@ body.booking-modal-open {
   font-size: 1.08rem;
 }
 
-.about-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 26px;
-}
-
-.about-pill {
-  padding: 9px 16px;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 999px;
-  font-family: "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
 .about-hero-dog {
   position: absolute;
   right: clamp(-40px, -2vw, 12px);
@@ -1846,30 +1828,12 @@ body.booking-modal-open {
 }
 
 .story-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 56px);
-  width: min(var(--max), 100%);
+  width: min(720px, 100%);
   margin: 0 auto;
-  align-items: start;
 }
 
-@media (min-width: 900px) {
-  .story-grid {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  }
-
-  .story-media {
-    position: sticky;
-    top: 100px;
-  }
-}
-
-.story-media img {
-  width: 100%;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
+.story-copy {
+  text-align: center;
 }
 
 .story-copy .eyebrow {
@@ -1877,18 +1841,18 @@ body.booking-modal-open {
 }
 
 .story-copy h2 {
-  margin: 0 0 28px;
+  margin: 0 0 32px;
   color: var(--blue);
   font-size: clamp(1.8rem, 4vw, 2.6rem);
 }
 
 .story-copy p {
-  max-width: 640px;
   margin: 0 0 20px;
   color: var(--ink);
   font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
   font-size: 1.08rem;
   line-height: 1.65;
+  text-align: left;
 }
 
 .story-closer {
@@ -1898,10 +1862,10 @@ body.booking-modal-open {
   font-size: clamp(1.3rem, 2.4vw, 1.8rem);
   font-weight: 400;
   line-height: 1.2;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.values,
 .team {
   position: relative;
   z-index: 1;
@@ -1909,127 +1873,6 @@ body.booking-modal-open {
   background: var(--blue);
   margin-top: calc(var(--curve) * -1);
   border-radius: var(--curve) var(--curve) 0 0;
-}
-
-.values-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 40px) clamp(20px, 4vw, 36px);
-  margin-top: clamp(36px, 6vw, 56px);
-}
-
-@media (min-width: 640px) {
-  .values-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .values-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-.value-card {
-  position: relative;
-}
-
-.value-num {
-  display: block;
-  margin-bottom: 4px;
-  color: rgba(255, 255, 255, 0.22);
-  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  font-size: clamp(2.2rem, 4vw, 2.8rem);
-  font-weight: 400;
-  line-height: 0.8;
-}
-
-.value-card h3 {
-  color: #fff;
-  font-size: 1.05rem;
-}
-
-.value-card p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.82);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 0.98rem;
-  line-height: 1.5;
-}
-
-.traits {
-  position: relative;
-  z-index: 1;
-  background: var(--paper);
-  margin-top: calc(var(--curve) * -1);
-  border-radius: var(--curve) var(--curve) 0 0;
-}
-
-.traits .section-heading p:not(.eyebrow) {
-  max-width: 560px;
-}
-
-.traits-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 22px;
-  width: min(var(--max), 100%);
-  margin: 0 auto;
-}
-
-@media (min-width: 640px) {
-  .traits-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .traits-grid {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-}
-
-.trait-card {
-  padding: clamp(22px, 3.4vw, 28px) clamp(18px, 2.6vw, 22px);
-  text-align: center;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 260ms ease;
-}
-
-.trait-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 34px rgba(36, 38, 95, 0.12);
-}
-
-.trait-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 14px;
-  color: #fff;
-  background: var(--blue);
-  border-radius: 14px;
-}
-
-.trait-icon svg {
-  width: 26px;
-  height: 26px;
-}
-
-.trait-card h3 {
-  color: var(--blue);
-  font-size: 1rem;
-}
-
-.trait-card p {
-  margin: 0;
-  color: var(--muted);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 0.96rem;
 }
 
 .team-grid {
