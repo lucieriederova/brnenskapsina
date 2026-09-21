@@ -954,7 +954,7 @@ h3 {
   inset: 0;
   background:
     linear-gradient(rgba(45, 47, 111, 0.55), rgba(45, 47, 111, 0.65)),
-    url("PUBLIC/16.png") center 90% / cover no-repeat;
+    url("PUBLIC/16.png") center 100% / cover no-repeat;
 }
 
 .closing-content {
