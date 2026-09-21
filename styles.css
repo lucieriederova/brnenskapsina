@@ -1796,8 +1796,8 @@ body.booking-modal-open {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(160deg, rgba(40, 42, 103, 0.88), rgba(40, 42, 103, 0.72) 55%, rgba(40, 42, 103, 0.88)),
-    url("PUBLIC/icons/playonas.jpg") center 65% / cover no-repeat;
+    linear-gradient(160deg, rgba(40, 42, 103, 0.5), rgba(40, 42, 103, 0.3) 55%, rgba(40, 42, 103, 0.5)),
+    url("PUBLIC/icons/playonas.jpg") center 55% / cover no-repeat;
 }
 
 .about-hero-inner {
@@ -1811,14 +1811,6 @@ body.booking-modal-open {
   margin: 14px 0 0;
   font-size: clamp(2rem, 5.4vw, 3.4rem);
   line-height: 1.05;
-}
-
-.about-hero-lede {
-  max-width: 560px;
-  margin: 18px 0 0;
-  color: rgba(255, 255, 255, 0.84);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 1.08rem;
 }
 
 .story {
