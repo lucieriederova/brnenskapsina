@@ -818,10 +818,7 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: clamp(40px, 6vw, 68px);
-  width: min(var(--max), calc(100% - 36px));
-  margin: calc(var(--curve) * -1) auto 0;
-  padding-left: 0;
-  padding-right: 0;
+  margin-top: calc(var(--curve) * -1);
   background: var(--paper);
   border-radius: var(--curve) var(--curve) 0 0;
 }
@@ -831,6 +828,8 @@ h3 {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(24px, 5vw, 64px);
   align-items: start;
+  width: min(var(--max), 100%);
+  margin: 0 auto;
 }
 
 .contact-copy,
@@ -1130,8 +1129,14 @@ h3 {
   margin: 0 -14px;
   padding-left: 14px;
   padding-right: 14px;
+  cursor: pointer;
   border-radius: 10px;
   transition: background 250ms ease, transform 250ms ease;
+}
+
+.price-box-inner article:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
 }
 
 .price-box-inner article:hover {

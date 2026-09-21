@@ -375,6 +375,14 @@
       event.preventDefault();
       openModal();
     });
+    if (trigger.tagName !== "A" && trigger.tagName !== "BUTTON") {
+      trigger.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openModal();
+        }
+      });
+    }
   });
 
   modal.querySelectorAll("[data-close-booking]").forEach((el) => {
