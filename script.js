@@ -155,6 +155,28 @@ if (pickupTags.length) {
   });
 }
 
+/* Cycle photo / tracker / phone in the GPS step */
+const gpsBlock = document.querySelector(".step-gps");
+
+if (gpsBlock) {
+  const items = [
+    { img: gpsBlock.querySelector(".step-gps-img--1"), label: "Denní fotka" },
+    { img: gpsBlock.querySelector(".step-gps-img--2"), label: "GPS tracker" },
+    { img: gpsBlock.querySelector(".step-gps-img--3"), label: "Živá poloha" },
+  ];
+  const caption = gpsBlock.querySelector(".step-gps-caption");
+  let gpsIndex = 0;
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    setInterval(() => {
+      items[gpsIndex].img.classList.remove("is-active");
+      gpsIndex = (gpsIndex + 1) % items.length;
+      items[gpsIndex].img.classList.add("is-active");
+      caption.textContent = items[gpsIndex].label;
+    }, 2800);
+  }
+}
+
 /* Water-splash / muddy paw prints on tap (hover already handled in CSS) */
 document.querySelectorAll(".step-splash").forEach((el) => {
   let splashTimer;
