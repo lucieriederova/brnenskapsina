@@ -494,6 +494,81 @@ h3 {
   height: auto;
 }
 
+.step-pickup {
+  position: relative;
+  width: min(100%, 190px);
+}
+
+.step-pickup img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.step-pickup-tag {
+  position: absolute;
+  z-index: 2;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(53, 56, 127, 0.16);
+  color: var(--blue);
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.step-pickup-tag--1 {
+  top: 0%;
+  left: -32%;
+  transform: rotate(-7deg);
+}
+
+.step-pickup-tag--2 {
+  top: 18%;
+  right: -30%;
+  transform: rotate(6deg);
+}
+
+.step-pickup-tag--3 {
+  top: 46%;
+  left: -36%;
+  transform: rotate(5deg);
+}
+
+.step-pickup-tag--4 {
+  top: 66%;
+  right: -32%;
+  transform: rotate(-6deg);
+}
+
+.step-pickup-tag--5 {
+  bottom: -2%;
+  left: 4%;
+  transform: rotate(-4deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-pickup-tag {
+    animation: pickup-float 3.6s ease-in-out infinite;
+  }
+
+  .step-pickup-tag--1 { animation-delay: 0s; }
+  .step-pickup-tag--2 { animation-delay: 0.5s; }
+  .step-pickup-tag--3 { animation-delay: 1s; }
+  .step-pickup-tag--4 { animation-delay: 1.5s; }
+  .step-pickup-tag--5 { animation-delay: 2s; }
+
+  @keyframes pickup-float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
+  }
+}
+
 .step-booking-preview {
   display: flex;
   flex-direction: column;
@@ -1566,6 +1641,20 @@ h3 {
 
   .step-media img {
     width: 220px;
+  }
+
+  .step-pickup {
+    margin: 0 auto;
+  }
+
+  .step-pickup-tag--1,
+  .step-pickup-tag--3 {
+    left: 2%;
+  }
+
+  .step-pickup-tag--2,
+  .step-pickup-tag--4 {
+    right: 2%;
   }
 
   .step-row .step-copy,
