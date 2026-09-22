@@ -154,3 +154,15 @@ if (pickupTags.length) {
     }, 2600 + slotIndex * 350);
   });
 }
+
+/* Water-splash / muddy paw prints on tap (hover already handled in CSS) */
+document.querySelectorAll(".step-splash").forEach((el) => {
+  let splashTimer;
+  el.addEventListener("click", () => {
+    el.classList.remove("is-splashing");
+    void el.offsetWidth;
+    el.classList.add("is-splashing");
+    clearTimeout(splashTimer);
+    splashTimer = setTimeout(() => el.classList.remove("is-splashing"), 1000);
+  });
+});
