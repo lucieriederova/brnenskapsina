@@ -155,36 +155,37 @@ if (pickupTags.length) {
   });
 }
 
-/* Cycle photo / tracker / phone in the GPS step */
+/* Slide photo / tracker / phone through the GPS carousel */
 const gpsBlock = document.querySelector(".step-gps");
 
 if (gpsBlock) {
-  const items = [
-    { img: gpsBlock.querySelector(".step-gps-img--1"), label: "Denní fotka" },
-    { img: gpsBlock.querySelector(".step-gps-img--2"), label: "GPS tracker" },
-    { img: gpsBlock.querySelector(".step-gps-img--3"), label: "Živá poloha" },
-  ];
+  const track = gpsBlock.querySelector(".step-gps-track");
   const caption = gpsBlock.querySelector(".step-gps-caption");
+  const labels = ["Denní fotka", "GPS tracker", "Živá poloha", "Denní fotka"];
+  const slideCount = labels.length;
   let gpsIndex = 0;
+
+  const goTo = (i) => {
+    track.style.transform = `translateX(-${i * (100 / slideCount)}%)`;
+    caption.textContent = labels[i];
+  };
 
   if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     setInterval(() => {
-      items[gpsIndex].img.classList.remove("is-active");
-      gpsIndex = (gpsIndex + 1) % items.length;
-      items[gpsIndex].img.classList.add("is-active");
-      caption.textContent = items[gpsIndex].label;
+      gpsIndex += 1;
+      goTo(gpsIndex);
+      if (gpsIndex === slideCount - 1) {
+        setTimeout(() => {
+          track.style.transition = "none";
+          gpsIndex = 0;
+          goTo(0);
+          void track.offsetWidth;
+          track.style.transition = "";
+        }, 720);
+      }
     }, 2800);
+  } else {
+    caption.textContent = labels[0];
   }
 }
 
-/* Water-splash / muddy paw prints on tap (hover already handled in CSS) */
-document.querySelectorAll(".step-splash").forEach((el) => {
-  let splashTimer;
-  el.addEventListener("click", () => {
-    el.classList.remove("is-splashing");
-    void el.offsetWidth;
-    el.classList.add("is-splashing");
-    clearTimeout(splashTimer);
-    splashTimer = setTimeout(() => el.classList.remove("is-splashing"), 1000);
-  });
-});
