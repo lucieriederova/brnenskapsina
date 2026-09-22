@@ -594,6 +594,105 @@ h3 {
   outline-offset: 3px;
 }
 
+.step-call-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: min(100%, 210px);
+  padding: 26px 18px;
+  border-radius: 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 34px rgba(53, 56, 127, 0.14);
+  cursor: pointer;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 420ms ease;
+}
+
+.step-call-preview-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+}
+
+.step-call-preview-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  opacity: 0;
+}
+
+.step-call-preview-icon {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.step-call-preview-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: #fff;
+}
+
+.step-call-preview-number {
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.step-row:hover .step-call-preview,
+.step-call-preview:focus-visible {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 24px 50px rgba(53, 56, 127, 0.26);
+}
+
+.step-call-preview:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-call-preview-ring {
+    animation: call-ring-pulse 2.6s ease-out infinite;
+  }
+
+  .step-call-preview-ring--delay {
+    animation-delay: 0.9s;
+  }
+
+  .step-call-preview-icon {
+    animation: call-buzz 2.6s ease-in-out infinite;
+  }
+
+  @keyframes call-ring-pulse {
+    0% { transform: scale(0.6); opacity: 0.55; }
+    70%, 100% { transform: scale(1.35); opacity: 0; }
+  }
+
+  @keyframes call-buzz {
+    0%, 8%, 100% { transform: rotate(0deg); }
+    1% { transform: rotate(-12deg); }
+    2% { transform: rotate(10deg); }
+    3% { transform: rotate(-9deg); }
+    4% { transform: rotate(7deg); }
+    5% { transform: rotate(-4deg); }
+    6% { transform: rotate(2deg); }
+    7% { transform: rotate(0deg); }
+  }
+}
+
 .step-copy {
   position: relative;
   flex: 1 1 0;
