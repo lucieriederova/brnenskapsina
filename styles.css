@@ -631,16 +631,16 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 96px;
-  height: 96px;
+  width: 104px;
+  height: 104px;
   border-radius: 50%;
-  background: linear-gradient(155deg, var(--blue), var(--blue-dark));
-  box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.14);
+  background: var(--soft);
+  box-shadow: inset 0 -4px 10px rgba(53, 56, 127, 0.08);
 }
 
-.step-call-preview-icon svg {
-  width: 58px;
-  height: 58px;
+.step-call-preview-icon img {
+  width: 74px;
+  height: auto;
 }
 
 .step-row:hover .step-call-preview,
