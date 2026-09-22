@@ -494,6 +494,106 @@ h3 {
   height: auto;
 }
 
+.step-booking-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(100%, 210px);
+  padding: 18px;
+  border-radius: 18px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 34px rgba(53, 56, 127, 0.14);
+  cursor: pointer;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 420ms ease;
+}
+
+.step-booking-preview-header {
+  display: flex;
+  gap: 6px;
+}
+
+.step-booking-preview-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.step-booking-preview-dot:first-child {
+  background: var(--blue);
+}
+
+.step-booking-preview-title {
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  color: var(--blue);
+  font-size: 0.86rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.step-booking-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.step-booking-preview-grid span {
+  aspect-ratio: 1;
+  border-radius: 5px;
+  background: var(--soft);
+  transition: background-color 420ms ease;
+}
+
+.step-booking-preview-grid span.is-active {
+  background: var(--blue);
+}
+
+.step-booking-preview-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: background-color 420ms ease;
+}
+
+.step-booking-preview-arrow {
+  display: inline-block;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.step-row:hover .step-booking-preview,
+.step-booking-preview:focus-visible {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 24px 50px rgba(53, 56, 127, 0.26);
+}
+
+.step-row:hover .step-booking-preview-grid span.is-active,
+.step-booking-preview:focus-visible .step-booking-preview-grid span.is-active {
+  background: var(--blue-dark);
+}
+
+.step-row:hover .step-booking-preview-arrow,
+.step-booking-preview:focus-visible .step-booking-preview-arrow {
+  transform: translateX(4px);
+}
+
+.step-booking-preview:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
 .step-copy {
   position: relative;
   flex: 1 1 0;
