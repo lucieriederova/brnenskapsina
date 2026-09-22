@@ -643,6 +643,32 @@ h3 {
   height: auto;
 }
 
+.step-call-preview-bark {
+  position: absolute;
+  z-index: 2;
+  top: 4px;
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--blue);
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.step-call-preview-bark--left {
+  left: -14px;
+  --bark-tilt: -16deg;
+  transform: rotate(var(--bark-tilt));
+}
+
+.step-call-preview-bark--right {
+  right: -14px;
+  --bark-tilt: 14deg;
+  transform: rotate(var(--bark-tilt));
+}
+
 .step-row:hover .step-call-preview,
 .step-call-preview:focus-visible {
   transform: translateY(-6px) scale(1.04);
@@ -668,9 +694,23 @@ h3 {
     transform-origin: 50% 100%;
   }
 
+  .step-call-preview-bark {
+    opacity: 0;
+    animation: call-bark 2.4s ease-in-out infinite;
+  }
+
+  .step-call-preview-bark--right {
+    animation-delay: 0.15s;
+  }
+
   @keyframes call-ring-pulse {
     0% { transform: scale(0.55); opacity: 0.5; }
     70%, 100% { transform: scale(1.3); opacity: 0; }
+  }
+
+  @keyframes call-bark {
+    0%, 47%, 100% { opacity: 0; transform: translateY(4px) rotate(var(--bark-tilt, 0deg)); }
+    8%, 40% { opacity: 1; transform: translateY(0) rotate(var(--bark-tilt, 0deg)); }
   }
 
   @keyframes call-hop {
