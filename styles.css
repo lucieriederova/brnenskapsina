@@ -520,52 +520,48 @@ h3 {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
+  opacity: 0;
+  transform: translateY(8px) rotate(var(--tilt, 0deg));
 }
 
 .step-pickup-tag--1 {
   top: 0%;
   left: -32%;
-  transform: rotate(-7deg);
+  --tilt: -7deg;
 }
 
 .step-pickup-tag--2 {
   top: 18%;
   right: -30%;
-  transform: rotate(6deg);
+  --tilt: 6deg;
 }
 
 .step-pickup-tag--3 {
   top: 46%;
   left: -36%;
-  transform: rotate(5deg);
+  --tilt: 5deg;
 }
 
 .step-pickup-tag--4 {
   top: 66%;
   right: -32%;
-  transform: rotate(-6deg);
+  --tilt: -6deg;
 }
 
 .step-pickup-tag--5 {
   bottom: -2%;
   left: 4%;
-  transform: rotate(-4deg);
+  --tilt: -4deg;
+}
+
+.step-pickup-tag.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(var(--tilt, 0deg));
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .step-pickup-tag {
-    animation: pickup-float 3.6s ease-in-out infinite;
-  }
-
-  .step-pickup-tag--1 { animation-delay: 0s; }
-  .step-pickup-tag--2 { animation-delay: 0.5s; }
-  .step-pickup-tag--3 { animation-delay: 1s; }
-  .step-pickup-tag--4 { animation-delay: 1.5s; }
-  .step-pickup-tag--5 { animation-delay: 2s; }
-
-  @keyframes pickup-float {
-    0%, 100% { translate: 0 0; }
-    50% { translate: 0 -6px; }
+    transition: opacity 480ms ease, transform 480ms ease;
   }
 }
 

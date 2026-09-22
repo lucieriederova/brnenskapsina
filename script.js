@@ -121,3 +121,36 @@ if (hero && wantsMotion) {
     hero.style.setProperty("--my", 0);
   });
 }
+
+/* Rotating Brno district tags around the pickup illustration */
+const pickupTags = document.querySelectorAll(".step-pickup-tag");
+
+if (pickupTags.length) {
+  const brnoDistricts = [
+    "Bystrc", "Komín", "Židenice", "Bohunice", "Starý Lískovec",
+    "Nový Lískovec", "Kníničky", "Jundrov", "Žabovřesky", "Královo Pole",
+    "Řečkovice", "Medlánky", "Ořešín", "Ivanovice", "Jehnice",
+    "Útěchov", "Maloměřice", "Slatina", "Tuřany", "Chrlice",
+    "Vinohrady", "Žebětín", "Bosonohy", "Kohoutovice", "Černovice",
+    "Brno-střed", "Brno-sever", "Brno-jih", "Brno-východ",
+  ];
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  pickupTags.forEach((tag, slotIndex) => {
+    let districtIndex = slotIndex;
+    tag.textContent = brnoDistricts[districtIndex % brnoDistricts.length];
+    setTimeout(() => tag.classList.add("is-visible"), 20);
+
+    if (reduceMotion) return;
+
+    setInterval(() => {
+      tag.classList.remove("is-visible");
+      setTimeout(() => {
+        districtIndex += pickupTags.length;
+        tag.textContent = brnoDistricts[districtIndex % brnoDistricts.length];
+        tag.classList.add("is-visible");
+      }, 480);
+    }, 2600 + slotIndex * 350);
+  });
+}
