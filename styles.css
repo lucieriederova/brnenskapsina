@@ -596,12 +596,11 @@ h3 {
 
 .step-call-preview {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  width: min(100%, 210px);
-  padding: 26px 18px;
-  border-radius: 18px;
+  justify-content: center;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
   background: var(--paper);
   border: 1px solid var(--line);
   box-shadow: 0 14px 34px rgba(53, 56, 127, 0.14);
@@ -642,14 +641,6 @@ h3 {
   width: 24px;
   height: 24px;
   fill: #fff;
-}
-
-.step-call-preview-number {
-  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  color: var(--blue);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.01em;
 }
 
 .step-row:hover .step-call-preview,
