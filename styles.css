@@ -682,6 +682,54 @@ h3 {
   }
 }
 
+.step-sleep {
+  position: relative;
+  width: min(100%, 220px);
+}
+
+.step-sleep img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.step-sleep-z {
+  position: absolute;
+  z-index: 1;
+  color: var(--blue);
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.step-sleep-z--1 { top: 6%; right: 30%; font-size: 0.85rem; }
+.step-sleep-z--2 { top: -8%; right: 20%; font-size: 1.15rem; }
+.step-sleep-z--3 { top: -24%; right: 6%; font-size: 1.55rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .step-sleep-z {
+    animation: zzz-float 3.2s ease-in-out infinite;
+  }
+
+  .step-sleep-z--1 { animation-delay: 0s; }
+  .step-sleep-z--2 { animation-delay: 0.45s; }
+  .step-sleep-z--3 { animation-delay: 0.9s; }
+
+  @keyframes zzz-float {
+    0% { opacity: 0; transform: translateY(0) scale(0.85); }
+    18%, 40% { opacity: 0.85; transform: translateY(-6px) scale(1); }
+    75%, 100% { opacity: 0; transform: translateY(-24px) scale(1.08); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step-sleep-z {
+    opacity: 0.85;
+  }
+}
+
 .step-booking-preview {
   display: flex;
   flex-direction: column;
