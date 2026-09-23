@@ -484,6 +484,7 @@ h3 {
 }
 
 .step-media {
+  position: relative;
   flex: 0 0 clamp(150px, 20vw, 260px);
   display: flex;
   justify-content: center;
@@ -576,54 +577,58 @@ h3 {
   height: auto;
 }
 
-.step-splash-paw {
+.step-paw-trail {
   position: absolute;
+  inset: 0;
   z-index: 1;
-  width: 38px;
-  height: 38px;
+  pointer-events: none;
+}
+
+.step-paw {
+  position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-.step-splash-paw svg {
+.step-paw svg {
+  display: block;
   width: 100%;
   height: 100%;
   fill: var(--blue);
 }
 
-.step-splash-paw--1 { left: 44%; bottom: -2%; transform: rotate(-10deg) scale(0.7); }
-.step-splash-paw--2 { left: 56%; bottom: -12%; transform: rotate(12deg) scale(0.78); }
-.step-splash-paw--3 { left: 66%; bottom: -24%; transform: rotate(-8deg) scale(0.86); }
-.step-splash-paw--4 { left: 78%; bottom: -36%; transform: rotate(10deg) scale(0.94); }
-.step-splash-paw--5 { left: 88%; bottom: -48%; transform: rotate(-6deg) scale(1); }
-.step-splash-paw--6 { left: 98%; bottom: -60%; transform: rotate(8deg) scale(1.06); }
+.step-paw--1 { width: 32px; height: 32px; right: 56px; bottom: 6px; transform: rotate(-9deg); }
+.step-paw--2 { width: 40px; height: 40px; right: 30px; bottom: -6px; transform: rotate(11deg); }
+.step-paw--3 { width: 48px; height: 48px; right: 2px; bottom: -16px; transform: rotate(-7deg); }
+.step-paw--4 { width: 56px; height: 56px; right: -28px; bottom: -24px; transform: rotate(9deg); }
+.step-paw--5 { width: 64px; height: 64px; right: -58px; bottom: -30px; transform: rotate(-5deg); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .step-splash-paw {
-    animation: paw-walk 3.6s ease-in-out infinite;
+  .step-paw {
+    animation: paw-walk 2.6s ease-in-out infinite;
   }
 
-  .step-splash-paw--1 { animation-delay: 0s; }
-  .step-splash-paw--2 { animation-delay: 0.35s; }
-  .step-splash-paw--3 { animation-delay: 0.7s; }
-  .step-splash-paw--4 { animation-delay: 1.05s; }
-  .step-splash-paw--5 { animation-delay: 1.4s; }
-  .step-splash-paw--6 { animation-delay: 1.75s; }
+  .step-paw--1 { animation-delay: 0s; }
+  .step-paw--2 { animation-delay: 0.3s; }
+  .step-paw--3 { animation-delay: 0.6s; }
+  .step-paw--4 { animation-delay: 0.9s; }
+  .step-paw--5 { animation-delay: 1.2s; }
 
   @keyframes paw-walk {
     0%, 100% { opacity: 0; }
-    10%, 28% { opacity: 0.6; }
-    46% { opacity: 0; }
+    12%, 34% { opacity: 0.65; }
+    52% { opacity: 0; }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .step-splash-paw {
-    opacity: 0.6;
+  .step-paw {
+    opacity: 0.65;
   }
 }
 
 .step-gps {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -731,6 +736,7 @@ h3 {
 }
 
 .step-booking-preview {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -831,6 +837,7 @@ h3 {
 }
 
 .step-call-preview {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
