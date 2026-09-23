@@ -597,11 +597,11 @@ h3 {
   fill: var(--blue);
 }
 
-.step-paw--1 { width: 32px; height: 32px; right: 56px; bottom: 6px; transform: rotate(-9deg); }
-.step-paw--2 { width: 40px; height: 40px; right: 30px; bottom: -6px; transform: rotate(11deg); }
-.step-paw--3 { width: 48px; height: 48px; right: 2px; bottom: -16px; transform: rotate(-7deg); }
-.step-paw--4 { width: 56px; height: 56px; right: -28px; bottom: -24px; transform: rotate(9deg); }
-.step-paw--5 { width: 64px; height: 64px; right: -58px; bottom: -30px; transform: rotate(-5deg); }
+.step-paw--1 { width: 28px; height: 28px; right: 62px; bottom: 10px; transform: rotate(-9deg); }
+.step-paw--2 { width: 35px; height: 35px; right: 34px; bottom: 0; transform: rotate(11deg); }
+.step-paw--3 { width: 42px; height: 42px; right: 0; bottom: -10px; transform: rotate(-7deg); }
+.step-paw--4 { width: 49px; height: 49px; right: -36px; bottom: -18px; transform: rotate(9deg); }
+.step-paw--5 { width: 56px; height: 56px; right: -74px; bottom: -24px; transform: rotate(-5deg); }
 
 @media (prefers-reduced-motion: no-preference) {
   .step-paw {
@@ -616,14 +616,14 @@ h3 {
 
   @keyframes paw-walk {
     0%, 100% { opacity: 0; }
-    12%, 34% { opacity: 0.65; }
-    52% { opacity: 0; }
+    12%, 30% { opacity: 0.85; }
+    48% { opacity: 0; }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .step-paw {
-    opacity: 0.65;
+    opacity: 0.85;
   }
 }
 
