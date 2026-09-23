@@ -2386,6 +2386,155 @@ body.booking-modal-open {
   text-transform: uppercase;
 }
 
+.story-copy {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .story-copy.is-revealing {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 550ms ease, transform 550ms ease;
+  }
+
+  .story-copy.is-revealing.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.envelope-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: min(100%, 280px);
+  aspect-ratio: 460 / 538;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  perspective: 1100px;
+}
+
+.envelope-body {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: url("PUBLIC/icons/envelope-body.png") center / contain no-repeat;
+  filter: drop-shadow(0 20px 36px rgba(53, 56, 127, 0.22));
+  transition: transform 320ms ease;
+}
+
+.envelope:hover .envelope-body,
+.envelope:focus-visible .envelope-body {
+  transform: scale(1.015);
+}
+
+.envelope-letter {
+  position: absolute;
+  left: 12%;
+  right: 12%;
+  top: -16%;
+  height: 44%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 16px 26px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px 10px 3px 3px;
+  box-shadow: 0 12px 22px rgba(53, 56, 127, 0.18);
+  transform-origin: bottom center;
+  transition: transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.envelope-letter-tab {
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  color: var(--blue);
+  font-size: 0.76rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.envelope-letter-line {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--soft);
+}
+
+.envelope-letter-line.short {
+  width: 60%;
+}
+
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 37.4%;
+  z-index: 3;
+  background: url("PUBLIC/icons/envelope-flap.png") top center / 100% 100% no-repeat;
+  filter: drop-shadow(0 3px 4px rgba(53, 56, 127, 0.14));
+  transform-origin: bottom center;
+  transition: transform 650ms cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.envelope-cta {
+  position: absolute;
+  left: 50%;
+  bottom: -46px;
+  z-index: 4;
+  padding: 9px 18px;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(53, 56, 127, 0.14);
+  color: var(--blue);
+  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  transition: opacity 300ms ease;
+}
+
+.envelope.is-open .envelope-flap {
+  transform: rotateX(-155deg);
+}
+
+.envelope.is-open .envelope-letter {
+  transform: translateY(-42%) scale(1.05);
+}
+
+.envelope.is-open .envelope-cta {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .envelope:not(.is-open) .envelope-letter {
+    animation: letter-flutter 3.4s ease-in-out infinite;
+  }
+
+  @keyframes letter-flutter {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-4%) rotate(-1.4deg); }
+    50% { transform: translateY(0) rotate(0.9deg); }
+    75% { transform: translateY(-3%) rotate(-0.7deg); }
+  }
+}
+
 .team {
   position: relative;
   z-index: 1;

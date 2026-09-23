@@ -189,3 +189,23 @@ if (gpsBlock) {
   }
 }
 
+/* Envelope reveal for the "Náš příběh" story */
+const envelopeToggle = document.getElementById("envelope-toggle");
+const storyCopy = document.getElementById("story-copy");
+
+if (envelopeToggle && storyCopy) {
+  envelopeToggle.addEventListener("click", () => {
+    if (envelopeToggle.classList.contains("is-open")) return;
+    envelopeToggle.classList.add("is-open");
+    envelopeToggle.setAttribute("aria-expanded", "true");
+    storyCopy.hidden = false;
+    storyCopy.classList.add("is-revealing");
+    setTimeout(() => {
+      storyCopy.classList.add("is-visible");
+    }, 20);
+    setTimeout(() => {
+      storyCopy.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }, 550);
+  });
+}
+

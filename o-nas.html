@@ -24,7 +24,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="PUBLIC/favicon/apple-touch-icon.png">
     <link rel="stylesheet" href="styles.css">
     <noscript>
-      <style>.reveal { opacity: 1 !important; transform: none !important; }</style>
+      <style>
+        .reveal { opacity: 1 !important; transform: none !important; }
+        .envelope-wrap { display: none !important; }
+        .story-copy { display: block !important; }
+      </style>
     </noscript>
   </head>
   <body>
@@ -60,7 +64,20 @@
 
       <section class="section story" aria-labelledby="story-title">
         <div class="story-grid">
-          <div class="story-copy">
+          <div class="envelope-wrap reveal">
+            <button class="envelope" type="button" id="envelope-toggle" aria-expanded="false" aria-controls="story-copy">
+              <span class="envelope-letter" aria-hidden="true">
+                <span class="envelope-letter-tab">Náš příběh</span>
+                <span class="envelope-letter-line"></span>
+                <span class="envelope-letter-line"></span>
+                <span class="envelope-letter-line short"></span>
+              </span>
+              <span class="envelope-flap" aria-hidden="true"></span>
+              <span class="envelope-body" aria-hidden="true"></span>
+              <span class="envelope-cta">Otevřít náš příběh</span>
+            </button>
+          </div>
+          <div class="story-copy" id="story-copy" hidden>
             <p class="eyebrow reveal">Náš příběh</p>
             <h2 id="story-title" class="reveal">Proč to děláme</h2>
             <p class="reveal">
