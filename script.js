@@ -1,7 +1,8 @@
 const header = document.querySelector(".site-header");
 const toggle = document.querySelector(".nav-toggle");
 const navLinks = document.querySelectorAll(".site-nav a");
-const form = document.querySelector(".booking-form");
+const inquiryForm = document.getElementById("inquiry-form");
+const inquiryStatus = document.getElementById("inquiry-status");
 
 toggle?.addEventListener("click", () => {
   const isOpen = header.classList.toggle("nav-open");
@@ -15,19 +16,74 @@ navLinks.forEach((link) => {
   });
 });
 
-form?.addEventListener("submit", (event) => {
+inquiryForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const button = form.querySelector("button");
+  const button = inquiryForm.querySelector("button");
   if (!button) return;
 
+  if (inquiryStatus) {
+    inquiryStatus.hidden = true;
+    inquiryStatus.textContent = "";
+    inquiryStatus.classList.remove("is-error");
+  }
+
+  const name = inquiryForm.querySelector('[name="name"]')?.value.trim();
+  const email = inquiryForm.querySelector('[name="email"]')?.value.trim();
+  if (!name || !email) {
+    if (inquiryStatus) {
+      inquiryStatus.textContent = "Vyplňte prosím alespoň jméno a e-mail.";
+      inquiryStatus.classList.add("is-error");
+      inquiryStatus.hidden = false;
+    }
+    return;
+  }
+
   const originalText = button.textContent;
-  button.textContent = "Poptávka připravena";
+  button.textContent = "Odesílám…";
   button.disabled = true;
 
-  window.setTimeout(() => {
+  const data = new FormData(inquiryForm);
+  const payload = {
+    kind: "inquiry",
+    dogName: data.get("dog-name"),
+    breed: data.get("breed"),
+    age: data.get("age"),
+    package: data.get("package"),
+    location: data.get("location"),
+    preferredDate: data.get("date"),
+    name,
+    phone: data.get("phone"),
+    email,
+    note: data.get("note"),
+  };
+
+  try {
+    const res = await fetch("/api/bookings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error("request_failed");
+
+    button.textContent = "Poptávka odeslána";
+    inquiryForm.reset();
+    if (inquiryStatus) {
+      inquiryStatus.textContent = "Díky! Ozveme se vám do 24 hodin.";
+      inquiryStatus.hidden = false;
+    }
+    window.setTimeout(() => {
+      button.textContent = originalText;
+    }, 2600);
+  } catch (err) {
     button.textContent = originalText;
+    if (inquiryStatus) {
+      inquiryStatus.textContent = "Něco se nepovedlo. Zkuste to prosím znovu, nebo nám napište na brnenskapsina@gmail.com.";
+      inquiryStatus.classList.add("is-error");
+      inquiryStatus.hidden = false;
+    }
+  } finally {
     button.disabled = false;
-  }, 2200);
+  }
 });
 
 /* Scroll-reveal animations */

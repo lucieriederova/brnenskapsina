@@ -8,6 +8,7 @@
   const successEl = document.getElementById("booking-form-success");
   const slotTitleEl = document.getElementById("booking-slot-title");
   const slotMetaEl = document.getElementById("booking-slot-meta");
+  const slotErrorEl = document.getElementById("booking-slot-error");
   const rangeLabelEl = modal.querySelector(".booking-range");
   const viewButtons = modal.querySelectorAll(".booking-view-btn");
   const navButtons = modal.querySelectorAll("[data-nav]");
@@ -25,46 +26,28 @@
     "července", "srpna", "září", "října", "listopadu", "prosince",
   ];
 
-  // Walk-slot template per weekday (0 = Monday … 6 = Sunday).
-  // Demo data only — nothing here is persisted or emailed anywhere yet.
-  const WEEK_TEMPLATE = [
-    [
-      { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6, booked: 3 },
-      { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6, booked: 6 },
-    ],
-    [
-      { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6, booked: 2 },
-      { start: "10:00", end: "12:00", title: "Dopolední vycházka", capacity: 4, booked: 4 },
-    ],
-    [
-      { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6, booked: 1 },
-    ],
-    [
-      { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6, booked: 5 },
-      { start: "10:00", end: "12:00", title: "Dopolední vycházka", capacity: 4, booked: 2 },
-    ],
-    [
-      { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6, booked: 4 },
-      { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6, booked: 3 },
-    ],
-    [
-      { start: "09:00", end: "12:00", title: "Víkendový výlet", capacity: 8, booked: 5 },
-    ],
-    [],
-  ];
-
   let currentView = "week";
   let anchorDate = new Date();
   let activeSlot = null;
   let lastFocused = null;
 
+  // Real availability comes from the server (/api/availability) so capacity
+  // is shared across everyone visiting the site, not just this browser tab.
+  const slotsByDate = new Map(); // dateKey -> slots for that date
+  const loadedRanges = new Set(); // "startKey_endKey" already fetched
+  let renderSeq = 0;
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function dateKey(date) {
+    return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}-${pad2(date.getDate())}`;
+  }
+
   function parseTime(str) {
     const [h, m] = str.split(":").map(Number);
     return h * 60 + m;
-  }
-
-  function formatTime(str) {
-    return str;
   }
 
   function startOfWeek(date) {
@@ -89,11 +72,42 @@
     );
   }
 
+  function visibleRange() {
+    if (currentView === "day") return { start: anchorDate, end: anchorDate };
+    const monday = startOfWeek(anchorDate);
+    return { start: monday, end: addDays(monday, 6) };
+  }
+
+  function invalidateAvailabilityCache() {
+    slotsByDate.clear();
+    loadedRanges.clear();
+  }
+
+  async function ensureRangeLoaded(startDate, endDate) {
+    const startKey = dateKey(startDate);
+    const endKey = dateKey(endDate);
+    const rangeKey = `${startKey}_${endKey}`;
+    if (loadedRanges.has(rangeKey)) return;
+
+    const res = await fetch(`/api/availability?start=${startKey}&end=${endKey}`);
+    if (!res.ok) throw new Error("availability_failed");
+    const data = await res.json();
+
+    data.slots.forEach((slot) => {
+      const list = slotsByDate.get(slot.date) || [];
+      list.push(slot);
+      slotsByDate.set(slot.date, list);
+    });
+    loadedRanges.add(rangeKey);
+  }
+
   function daySlots(date) {
-    const template = WEEK_TEMPLATE[(date.getDay() + 6) % 7];
-    return template.map((slot, i) => ({
+    const key = dateKey(date);
+    const list = slotsByDate.get(key) || [];
+    return list.map((slot, i) => ({
       ...slot,
-      id: `${date.toDateString()}-${i}`,
+      id: `${key}-${i}`,
+      dateStr: key,
       date,
     }));
   }
@@ -277,8 +291,39 @@
     calendarEl.replaceChildren(list);
   }
 
-  function renderCalendar() {
+  function showCalendarStatus(message, { error = false, retry = false } = {}) {
+    const wrap = document.createElement("div");
+    wrap.className = "booking-calendar-status" + (error ? " is-error" : "");
+    const p = document.createElement("p");
+    p.textContent = message;
+    wrap.appendChild(p);
+    if (retry) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "button primary";
+      btn.textContent = "Zkusit znovu";
+      btn.addEventListener("click", () => renderCalendar());
+      wrap.appendChild(btn);
+    }
+    calendarEl.replaceChildren(wrap);
+  }
+
+  async function renderCalendar() {
     rangeLabelEl.textContent = formatRangeLabel();
+    const mySeq = ++renderSeq;
+    const { start, end } = visibleRange();
+
+    showCalendarStatus("Načítám dostupné termíny…");
+
+    try {
+      await ensureRangeLoaded(start, end);
+    } catch (err) {
+      if (mySeq !== renderSeq) return;
+      showCalendarStatus("Nepodařilo se načíst termíny. Zkuste to prosím znovu.", { error: true, retry: true });
+      return;
+    }
+    if (mySeq !== renderSeq) return;
+
     if (currentView === "week") renderWeek();
     else if (currentView === "day") renderDay();
     else renderAgenda();
@@ -319,6 +364,10 @@
 
     formEl.hidden = false;
     formEl.reset();
+    if (slotErrorEl) {
+      slotErrorEl.hidden = true;
+      slotErrorEl.textContent = "";
+    }
     successEl.hidden = true;
     calendarEl.hidden = true;
     formViewEl.hidden = false;
@@ -330,23 +379,72 @@
     calendarEl.hidden = false;
     activeSlot = null;
     modal.classList.remove("is-form-view");
+    renderCalendar();
   }
 
   modal.querySelectorAll("[data-booking-back]").forEach((btn) => {
     btn.addEventListener("click", closeBookingForm);
   });
 
-  formEl?.addEventListener("submit", (event) => {
+  formEl?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!activeSlot) return;
 
-    // Frontend-only demo: no server yet, so nothing is actually emailed
-    // or persisted. We just bump the in-memory count so the capacity
-    // shown in the calendar reflects the booking for this session.
-    activeSlot.booked = Math.min(activeSlot.capacity, activeSlot.booked + 1);
+    const submitBtn = formEl.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Odesílám…";
+    if (slotErrorEl) {
+      slotErrorEl.hidden = true;
+      slotErrorEl.textContent = "";
+    }
 
-    formEl.hidden = true;
-    successEl.hidden = false;
+    const data = new FormData(formEl);
+    const payload = {
+      kind: "slot",
+      slotDate: activeSlot.dateStr,
+      slotStart: activeSlot.start,
+      slotEnd: activeSlot.end,
+      dogName: data.get("dog-name"),
+      breed: data.get("breed"),
+      name: data.get("name"),
+      phone: data.get("phone"),
+      email: data.get("email"),
+      note: data.get("note"),
+    };
+
+    try {
+      const res = await fetch("/api/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.status === 201) {
+        invalidateAvailabilityCache();
+        formEl.hidden = true;
+        successEl.hidden = false;
+      } else if (res.status === 409) {
+        invalidateAvailabilityCache();
+        if (slotErrorEl) {
+          slotErrorEl.textContent = "Tento termín je mezitím obsazený. Vraťte se prosím do kalendáře a vyberte jiný.";
+          slotErrorEl.hidden = false;
+        }
+      } else {
+        if (slotErrorEl) {
+          slotErrorEl.textContent = "Něco se nepovedlo. Zkuste to prosím znovu, nebo nám napište na brnenskapsina@gmail.com.";
+          slotErrorEl.hidden = false;
+        }
+      }
+    } catch (err) {
+      if (slotErrorEl) {
+        slotErrorEl.textContent = "Nepodařilo se odeslat — zkontrolujte připojení a zkuste to znovu.";
+        slotErrorEl.hidden = false;
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
   });
 
   function openModal() {
@@ -357,7 +455,10 @@
     anchorDate = new Date();
     const isNarrow = window.matchMedia("(max-width: 640px)").matches;
     setView(isNarrow ? "agenda" : "week");
-    closeBookingForm();
+    formViewEl.hidden = true;
+    calendarEl.hidden = false;
+    activeSlot = null;
+    modal.classList.remove("is-form-view");
     window.setTimeout(() => {
       modal.querySelector(".booking-modal-close")?.focus();
     }, 0);

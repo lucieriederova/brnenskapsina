@@ -414,7 +414,7 @@
             <p class="contact-tagline">Napište nám</p>
           </div>
         </div>
-        <form class="booking-form reveal">
+        <form class="booking-form reveal" id="inquiry-form">
           <label>
             Jméno psa
             <input type="text" name="dog-name" autocomplete="off">
@@ -466,6 +466,7 @@
             Poznámka (nepovinné)
             <textarea name="note" rows="4" placeholder="Cokoliv, co bychom o vašem psovi měli vědět předem…"></textarea>
           </label>
+          <p class="form-status" id="inquiry-status" role="alert" hidden></p>
           <button class="button primary" type="submit">Odeslat poptávku</button>
           <p class="form-note">Nejde o závaznou objednávku, jen o poptávku.</p>
         </form>
@@ -570,6 +571,7 @@
                 Poznámka (nepovinné)
                 <textarea name="note" rows="3" placeholder="Cokoliv, co bychom o vašem psovi měli vědět předem…"></textarea>
               </label>
+              <p class="form-status" id="booking-slot-error" role="alert" hidden></p>
               <button class="button primary" type="submit">Odeslat registraci</button>
               <p class="form-note">Nejde o závaznou objednávku, jen o poptávku. Ozveme se vám do 24 hodin.</p>
             </form>

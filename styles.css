@@ -1358,6 +1358,28 @@ h3 {
   font-weight: 800;
 }
 
+.form-status {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 14px;
+  color: var(--blue);
+  background: var(--soft);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.form-status[hidden] {
+  display: none;
+}
+
+.form-status.is-error {
+  color: #9c2b2b;
+  background: #fbe9e9;
+  border-color: #f1c3c3;
+}
+
 .closing {
   position: relative;
   z-index: 1;
@@ -2180,6 +2202,24 @@ h3 {
   color: var(--muted);
   text-align: center;
   padding: 40px 0;
+}
+
+.booking-calendar-status {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  padding: 60px 0;
+  color: var(--muted);
+  text-align: center;
+}
+
+.booking-calendar-status p {
+  margin: 0;
+  font-weight: 700;
+}
+
+.booking-calendar-status.is-error p {
+  color: #9c2b2b;
 }
 
 .booking-back {
