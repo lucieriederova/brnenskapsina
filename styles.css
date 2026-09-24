@@ -2379,95 +2379,27 @@ body.booking-modal-open {
   cursor: pointer;
 }
 
-.envelope-closed {
+.envelope-photo {
   position: absolute;
   inset: 0;
   z-index: 1;
-  transition: opacity 420ms ease, transform 420ms ease;
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.envelope-closed-body {
-  position: absolute;
-  left: 3%;
-  right: 3%;
-  top: 32%;
-  bottom: 4%;
-  background: var(--soft);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: 0 20px 36px rgba(53, 56, 127, 0.2);
-}
-
-.envelope-closed-flap {
-  position: absolute;
-  left: 3%;
-  right: 3%;
-  top: 6%;
-  height: 34%;
-  background: #e6e6f6;
-  border: 1px solid var(--line);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  filter: drop-shadow(0 3px 5px rgba(53, 56, 127, 0.16));
-}
-
-.envelope:hover .envelope-closed,
-.envelope:focus-visible .envelope-closed {
-  transform: scale(1.015);
-}
-
-.envelope-letter {
-  position: absolute;
-  left: 14%;
-  right: 14%;
-  top: -14%;
-  height: 42%;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 14px 14px 22px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 8px 8px 3px 3px;
-  box-shadow: 0 12px 22px rgba(53, 56, 127, 0.18);
-  transform-origin: bottom center;
-  transition: transform 420ms ease, opacity 420ms ease;
-}
-
-.envelope-letter-tab {
-  font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
-  color: var(--blue);
-  font-size: 0.76rem;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-.envelope-letter-line {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--soft);
-}
-
-.envelope-letter-line.short {
-  width: 60%;
-}
-
-.envelope-open {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 420ms ease, transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
-  pointer-events: none;
-}
-
-.envelope-open img {
+.envelope-photo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   filter: drop-shadow(0 20px 36px rgba(53, 56, 127, 0.22));
+}
+
+.envelope:hover .envelope-photo,
+.envelope:focus-visible .envelope-photo {
+  transform: scale(1.02);
+}
+
+.envelope.is-open .envelope-photo {
+  transform: scale(1.06);
 }
 
 .envelope-cta {
@@ -2491,36 +2423,21 @@ body.booking-modal-open {
   transition: opacity 300ms ease;
 }
 
-.envelope.is-open .envelope-closed {
-  opacity: 0;
-  transform: scale(0.94);
-}
-
-.envelope.is-open .envelope-letter {
-  opacity: 0;
-  transform: translateY(-10%) scale(0.9);
-}
-
-.envelope.is-open .envelope-open {
-  opacity: 1;
-  transform: scale(1);
-}
-
 .envelope.is-open .envelope-cta {
   opacity: 0;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .envelope:not(.is-open) .envelope-letter {
+  .envelope:not(.is-open) .envelope-photo {
     animation: letter-flutter 3.4s ease-in-out infinite;
   }
 
   @keyframes letter-flutter {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-4%) rotate(-1.4deg); }
-    50% { transform: translateY(0) rotate(0.9deg); }
-    75% { transform: translateY(-3%) rotate(-0.7deg); }
+    25% { transform: translateY(-2%) rotate(-1deg); }
+    50% { transform: translateY(0) rotate(0.6deg); }
+    75% { transform: translateY(-1.5%) rotate(-0.5deg); }
   }
 }
 
