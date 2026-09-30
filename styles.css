@@ -1763,8 +1763,8 @@ h3 {
     margin-right: 0;
   }
 
-  .how .section-heading.right {
-    margin-top: max(0px, calc(var(--how-blob-h) - 60px));
+  .how-blob {
+    display: none;
   }
 
   .step-row,
@@ -1840,7 +1840,7 @@ h3 {
   }
 
   .hero-photo {
-    background-position: 8% 42%;
+    background-position: 16% 42%;
   }
 
   .hero-title {
