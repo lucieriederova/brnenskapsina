@@ -1839,8 +1839,25 @@ h3 {
     height: 64px;
   }
 
+  .hero {
+    min-height: clamp(460px, 150vw, 620px);
+  }
+
+  .hero-photo {
+    background-position: center 46%;
+  }
+
   .hero-title {
-    padding-top: 110px;
+    padding-top: 100px;
+    font-size: clamp(1.6rem, 7.6vw, 2.4rem);
+  }
+
+  .hero-panel {
+    padding: 22px 24px 32px;
+  }
+
+  .hero-panel p {
+    font-size: 0.95rem;
   }
 
   .hero-actions,
@@ -1854,8 +1871,84 @@ h3 {
 
   .section,
   .content-band {
-    padding-top: 58px;
-    padding-bottom: 58px;
+    padding-top: 46px;
+    padding-bottom: 46px;
+  }
+
+  h2 {
+    font-size: clamp(1.7rem, 8.5vw, 2.6rem);
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .section-heading p:not(.eyebrow) {
+    font-size: 0.96rem;
+  }
+
+  .steps-list {
+    gap: 30px;
+  }
+
+  .step-row,
+  .step-row:nth-of-type(odd) {
+    gap: 12px;
+  }
+
+  .step-num,
+  .safety-num {
+    font-size: 2.5rem;
+  }
+
+  .step-copy h3,
+  .safety-copy h3 {
+    font-size: 1.2rem;
+  }
+
+  .step-copy p,
+  .safety-copy p {
+    font-size: 0.98rem;
+  }
+
+  .step-media img {
+    width: min(100%, 160px);
+  }
+
+  .step-booking-preview {
+    width: min(100%, 170px);
+    padding: 14px;
+  }
+
+  .step-call-preview {
+    width: 150px;
+    height: 150px;
+  }
+
+  .step-call-preview-icon-wrap {
+    width: 96px;
+    height: 96px;
+  }
+
+  .step-pickup {
+    width: min(100%, 150px);
+  }
+
+  .step-splash,
+  .step-sleep {
+    width: min(100%, 160px);
+  }
+
+  .step-gps {
+    width: min(100%, 190px);
+  }
+
+  .step-gps-frame {
+    height: 270px;
+  }
+
+  .map-embed {
+    padding-top: 46%;
   }
 
   .price-box-inner strong {
