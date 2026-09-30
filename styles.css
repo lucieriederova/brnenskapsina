@@ -1120,7 +1120,7 @@ h3 {
   text-align: right;
   font-family: "Superbusy Activity", "Trebuchet MS", "Arial Rounded MT Bold", Arial, sans-serif;
   font-weight: 400;
-  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-size: clamp(2.1rem, 5.7vw, 5rem);
   line-height: 0.95;
 }
 
