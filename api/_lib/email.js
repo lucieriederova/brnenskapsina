@@ -34,7 +34,13 @@ export async function notifyOwner(subject, lines) {
   }
   const html = `<p>${lines.map(escapeHtml).join("</p><p>")}</p>`;
   try {
-    await resend.emails.send({ from: FROM, to: NOTIFY_TO, subject, html });
+    // The Resend SDK resolves with { data, error } instead of throwing for
+    // API-level failures (e.g. sandbox recipient restrictions), so both
+    // paths must be checked to avoid silently swallowing a real failure.
+    const { error } = await resend.emails.send({ from: FROM, to: NOTIFY_TO, subject, html });
+    if (error) {
+      console.error("Resend rejected the notification email:", error);
+    }
   } catch (err) {
     console.error("Failed to send notification email:", err);
   }
