@@ -1097,6 +1097,23 @@ h3 {
   padding: clamp(8px, 1.5vw, 16px);
 }
 
+.price-extras-heading {
+  margin: clamp(48px, 7vw, 72px) 0 clamp(20px, 3vw, 28px);
+  color: var(--blue);
+  text-align: right;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+}
+
+.price-box--extras .price-box-inner article {
+  cursor: default;
+}
+
+.price-box--extras .price-box-inner article:hover {
+  background: none;
+  transform: none;
+}
+
 .price-box-sketch {
   position: absolute;
   inset: 0;
