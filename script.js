@@ -250,8 +250,11 @@ const envelopeToggle = document.getElementById("envelope-toggle");
 const storyCopy = document.getElementById("story-copy");
 
 if (envelopeToggle && storyCopy) {
-  envelopeToggle.addEventListener("click", () => {
-    if (envelopeToggle.classList.contains("is-open")) return;
+  const storyReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let closeTimeout = null;
+
+  function openStory() {
+    clearTimeout(closeTimeout);
     envelopeToggle.classList.add("is-open");
     envelopeToggle.setAttribute("aria-expanded", "true");
     storyCopy.hidden = false;
@@ -262,6 +265,30 @@ if (envelopeToggle && storyCopy) {
     setTimeout(() => {
       storyCopy.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }, 550);
+  }
+
+  function closeStory() {
+    envelopeToggle.classList.remove("is-open");
+    envelopeToggle.setAttribute("aria-expanded", "false");
+    storyCopy.classList.remove("is-visible");
+    clearTimeout(closeTimeout);
+    if (storyReducedMotion) {
+      storyCopy.hidden = true;
+      storyCopy.classList.remove("is-revealing");
+    } else {
+      closeTimeout = setTimeout(() => {
+        storyCopy.hidden = true;
+        storyCopy.classList.remove("is-revealing");
+      }, 620);
+    }
+  }
+
+  envelopeToggle.addEventListener("click", () => {
+    if (envelopeToggle.classList.contains("is-open")) {
+      closeStory();
+    } else {
+      openStory();
+    }
   });
 }
 
