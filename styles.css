@@ -1911,18 +1911,22 @@ h3 {
     font-size: 0.98rem;
   }
 
+  .step-media {
+    justify-content: center;
+  }
+
   .step-media img {
-    width: min(100%, 160px);
+    width: min(100%, 140px);
   }
 
   .step-booking-preview {
-    width: min(100%, 170px);
-    padding: 14px;
+    width: min(100%, 150px);
+    padding: 12px;
   }
 
   .step-call-preview {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
   }
 
   .step-call-preview-icon-wrap {
@@ -1930,21 +1934,31 @@ h3 {
     height: 96px;
   }
 
+  .step-call-preview-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .step-call-preview-icon img {
+    width: 58px;
+  }
+
   .step-pickup {
-    width: min(100%, 150px);
+    width: min(100%, 130px);
+    margin: 0 auto;
   }
 
   .step-splash,
   .step-sleep {
-    width: min(100%, 160px);
+    width: min(100%, 140px);
   }
 
   .step-gps {
-    width: min(100%, 190px);
+    width: min(100%, 165px);
   }
 
   .step-gps-frame {
-    height: 270px;
+    height: 235px;
   }
 
   .map-embed {
