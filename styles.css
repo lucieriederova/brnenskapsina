@@ -1953,7 +1953,8 @@ h3 {
     padding-bottom: 46px;
   }
 
-  h2 {
+  h2,
+  .price-extras-heading {
     font-size: clamp(1.7rem, 8.5vw, 2.6rem);
   }
 
