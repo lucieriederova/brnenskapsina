@@ -1,8 +1,21 @@
 import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 const NOTIFY_TO = process.env.BOOKING_NOTIFY_EMAIL || "brnenskapsina@gmail.com";
 const FROM = process.env.BOOKING_FROM_EMAIL || "Brněnská psina <onboarding@resend.dev>";
+
+// Built lazily (not at module load) so a malformed RESEND_API_KEY can never
+// crash the whole function before a booking has a chance to be saved —
+// email notification is a nice-to-have, saving the booking is not.
+function getResendClient() {
+  const key = process.env.RESEND_API_KEY?.trim();
+  if (!key) return null;
+  try {
+    return new Resend(key);
+  } catch (err) {
+    console.error("Failed to construct Resend client (check RESEND_API_KEY for stray characters):", err);
+    return null;
+  }
+}
 
 function escapeHtml(str) {
   return String(str ?? "").replace(/[&<>"']/g, (c) => (
@@ -14,8 +27,9 @@ function escapeHtml(str) {
 // already made it into the database, so callers should not await this on
 // the critical path of the response.
 export async function notifyOwner(subject, lines) {
+  const resend = getResendClient();
   if (!resend) {
-    console.warn("RESEND_API_KEY not set — skipping owner notification email");
+    console.warn("Resend not configured — skipping owner notification email");
     return;
   }
   const html = `<p>${lines.map(escapeHtml).join("</p><p>")}</p>`;
