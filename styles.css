@@ -1332,6 +1332,37 @@ h3 {
   color: var(--blue);
 }
 
+.about-hero.care-hero {
+  padding-bottom: calc(clamp(64px, 10vw, 110px) + var(--curve));
+}
+
+.care-hero .care-hero-photo {
+  background:
+    linear-gradient(160deg, rgba(40, 42, 103, 0.62), rgba(40, 42, 103, 0.3) 55%, rgba(40, 42, 103, 0.55)),
+    url("PUBLIC/icons/pece-hero.jpg") center 70% / cover no-repeat;
+}
+
+.care-hero .eyebrow {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.care-hero-lead {
+  max-width: 520px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.care-section {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--curve) * -1);
+  border-radius: var(--curve) var(--curve) 0 0;
+  background: var(--paper);
+}
+
 .care-jump {
   display: flex;
   flex-wrap: wrap;
@@ -1429,9 +1460,15 @@ h3 {
   align-self: center;
 }
 
-/* Two portrait photos side by side, uncropped. */
-.care-collage--pair {
-  align-items: center;
+/* A single photo that fills the whole space beside the card. */
+.care-side-photo--fill {
+  aspect-ratio: 4 / 5;
+}
+
+.care-side-photo--fill img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
 }
 
 /* Wide screens: text and photo side by side, alternating like "Jak to funguje?". */
@@ -1456,13 +1493,9 @@ h3 {
     height: auto;
   }
 
-  .care-collage--pair {
-    align-self: center;
-    grid-template-rows: none;
-  }
-
-  .care-collage--pair img {
-    height: auto;
+  .care-side-photo--fill {
+    align-self: stretch;
+    aspect-ratio: auto;
   }
 
   .care-collage img {
