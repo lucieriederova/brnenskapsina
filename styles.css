@@ -1420,6 +1420,20 @@ h3 {
   grid-column: 1 / -1;
 }
 
+.care-collage--tall {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  aspect-ratio: 1 / 1;
+}
+
+.care-collage--tall img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.care-collage-tall {
+  grid-row: 1 / -1;
+}
+
 /* Wide screens: text and photo side by side, alternating like "Jak to funguje?". */
 @media (min-width: 900px) {
   .care-row {
@@ -1431,6 +1445,11 @@ h3 {
   .care-collage {
     align-self: stretch;
     grid-template-rows: 3fr 2fr;
+  }
+
+  .care-collage--tall {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    aspect-ratio: auto;
   }
 
   .care-collage img {
