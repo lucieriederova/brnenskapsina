@@ -124,25 +124,32 @@
 
           <article class="step-row reveal">
             <div class="step-media">
-              <a class="step-call-preview" href="tel:+420602500368" aria-label="Zavolat na +420 602 500 368">
-                <span class="step-call-preview-icon-wrap">
-                  <span class="step-call-preview-ring" aria-hidden="true"></span>
-                  <span class="step-call-preview-ring step-call-preview-ring--delay" aria-hidden="true"></span>
-                  <span class="step-call-preview-icon" aria-hidden="true">
-                    <img src="PUBLIC/icons/pevna-linka.png" alt="">
-                  </span>
-                  <span class="step-call-preview-bark step-call-preview-bark--left" aria-hidden="true">Haf haf</span>
-                  <span class="step-call-preview-bark step-call-preview-bark--right" aria-hidden="true">Haf haf</span>
-                </span>
-              </a>
+              <div class="step-call-preview step-form-preview" aria-hidden="true">
+                <svg class="step-form-svg" viewBox="0 0 100 100">
+                  <rect class="step-form-paper" x="24" y="14" width="52" height="74" rx="6"></rect>
+                  <rect class="step-form-clip" x="39" y="9" width="22" height="10" rx="3"></rect>
+                  <path class="step-form-line step-form-line--1" d="M33 36 H67" pathLength="1"></path>
+                  <path class="step-form-line step-form-line--2" d="M33 48 H67" pathLength="1"></path>
+                  <path class="step-form-line step-form-line--3" d="M33 60 H67" pathLength="1"></path>
+                  <path class="step-form-line step-form-line--4" d="M33 72 H55" pathLength="1"></path>
+                  <g class="step-form-pencil">
+                    <g transform="rotate(-45)">
+                      <path class="step-form-pencil-tip" d="M0 0 L8 -3.5 L8 3.5 Z"></path>
+                      <rect class="step-form-pencil-body" x="8" y="-3.5" width="22" height="7"></rect>
+                      <rect class="step-form-pencil-eraser" x="30" y="-3.5" width="6" height="7" rx="1.5"></rect>
+                    </g>
+                  </g>
+                </svg>
+              </div>
             </div>
             <div class="step-copy">
               <span class="step-num">02</span>
-              <h3>Zavoláme si o pejskovi</h3>
+              <h3>Pošleme vám potvrzovací e-mail</h3>
               <p>
-                Krátký telefonát, kde se zeptáme na to podstatné – jaký je váš pes povahou, jak vychází
-                s ostatními psy, jestli má nějaké zvláštnosti nebo na co si dát pozor. Nadále budeme řešit
-                věk a fyzickou zdatnost.
+                Po rezervaci vám přijde potvrzovací e-mail s krátkým formulářem o vašem pejskovi – jaký je
+                povahou, jak vychází s ostatními psy, jestli má nějaké zvláštnosti nebo na co si dát pozor,
+                jaký má věk a fyzickou zdatnost. Kdybyste měli jakékoli dotazy, klidně nám
+                <a href="tel:+420602500368">zavolejte</a>, nebo se ozveme my vám.
               </p>
             </div>
           </article>
@@ -225,9 +232,9 @@
               <h3>Bezpečný návrat domů</h3>
               <p>
                 Večer psa přivezeme zpátky – unaveného, spokojeného a trochu jiného, než jsme ho
-                ráno vyzvedli (les je zkrátka les). Než ho předáme, tak pejska základně ho očistíme (v případě 
-                plemen se specifickou srstí je samozřejmě možnost se domluvit o komplexnější servis),
-                ať vám doma nezůstane celý lesní den na koberci.
+                ráno vyzvedli (les je zkrátka les). Než vám ho předáme, základně ho očistíme, ať vám doma
+                nezůstane celý lesní den na koberci. U plemen se specifickou srstí se můžeme domluvit
+                i na důkladnější péči.
               </p>
             </div>
           </article>
@@ -570,6 +577,7 @@
               <button type="button" class="booking-nav-btn" data-nav="next" aria-label="Další období">›</button>
             </div>
           </div>
+          <p class="booking-time-note">Časy v kalendáři jsou orientační – přesný čas vyzvednutí vašeho psa domluvíme telefonicky.</p>
         </header>
 
         <div class="booking-modal-body">
@@ -579,6 +587,7 @@
             <button type="button" class="booking-back" data-booking-back>‹ Zpět na kalendář</button>
             <h3 class="booking-slot-title" id="booking-slot-title"></h3>
             <p class="booking-slot-meta" id="booking-slot-meta"></p>
+            <p class="booking-time-note">Přesný čas vyzvednutí (a tím i začátku procházky) s vámi domluvíme po telefonu.</p>
 
             <form class="booking-form booking-modal-form" id="booking-slot-form">
               <label>

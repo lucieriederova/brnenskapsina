@@ -2,30 +2,19 @@
 // This is the single source of truth for which slots exist and how many
 // dogs fit in each — the frontend no longer hardcodes this, it fetches
 // real availability from /api/availability.
+// D = dopolední (4 h), O = odpolední (4 h), C = celodenní (8 h).
+const D = { start: "08:00", end: "12:00", title: "Dopolední procházka", capacity: 6 };
+const O = { start: "14:00", end: "18:00", title: "Odpolední procházka", capacity: 6 };
+const C = { start: "09:00", end: "17:00", title: "Celodenní procházka", capacity: 6 };
+
 export const WEEK_TEMPLATE = [
-  [
-    { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6 },
-    { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6 },
-  ],
-  [
-    { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6 },
-    { start: "10:00", end: "12:00", title: "Dopolední vycházka", capacity: 4 },
-  ],
-  [
-    { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6 },
-  ],
-  [
-    { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6 },
-    { start: "10:00", end: "12:00", title: "Dopolední vycházka", capacity: 4 },
-  ],
-  [
-    { start: "08:00", end: "10:00", title: "Ranní vycházka", capacity: 6 },
-    { start: "15:30", end: "17:30", title: "Odpolední vycházka", capacity: 6 },
-  ],
-  [
-    { start: "09:00", end: "12:00", title: "Víkendový výlet", capacity: 8 },
-  ],
-  [],
+  [C, O], // pondělí
+  [C], // úterý
+  [D, C, O], // středa
+  [D], // čtvrtek
+  [], // pátek
+  [D, C, O], // sobota
+  [D, C, O], // neděle
 ];
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;

@@ -149,7 +149,19 @@
       col.appendChild(line);
     }
 
-    daySlots(date).forEach((slot) => {
+    // Overlapping slots (e.g. celodenní next to dopolední) get side-by-side lanes.
+    const slots = daySlots(date);
+    const laneEnds = [];
+    const lanes = slots.map((slot) => {
+      const startMin = parseTime(slot.start);
+      let lane = laneEnds.findIndex((end) => end <= startMin);
+      if (lane === -1) lane = laneEnds.length;
+      laneEnds[lane] = parseTime(slot.end);
+      return lane;
+    });
+    const laneCount = Math.max(laneEnds.length, 1);
+
+    slots.forEach((slot, slotIndex) => {
       const startMin = parseTime(slot.start);
       const endMin = parseTime(slot.end);
       const top = ((startMin - HOUR_START * 60) / 60) * HOUR_HEIGHT;
@@ -160,6 +172,8 @@
       block.className = "booking-slot" + (isFull ? " is-full" : "");
       block.style.top = `${top}px`;
       block.style.height = `${Math.max(height, 34)}px`;
+      block.style.left = `calc(${(lanes[slotIndex] / laneCount) * 100}% + 4px)`;
+      block.style.width = `calc(${100 / laneCount}% - 8px)`;
       if (!isFull) {
         block.type = "button";
         block.addEventListener("click", () => openBookingForm(slot));

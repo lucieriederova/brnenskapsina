@@ -863,6 +863,54 @@ h3 {
   transform: rotate(var(--bark-tilt));
 }
 
+.step-form-preview {
+  cursor: default;
+}
+
+.step-form-svg {
+  width: 128px;
+  height: 128px;
+  overflow: visible;
+}
+
+.step-form-paper {
+  fill: #fff;
+  stroke: var(--blue);
+  stroke-width: 3;
+}
+
+.step-form-clip {
+  fill: var(--blue);
+}
+
+.step-form-line {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+}
+
+.step-form-pencil {
+  transform: translate(57px, 70px);
+}
+
+.step-form-pencil-tip {
+  fill: var(--blue-dark);
+}
+
+.step-form-pencil-body {
+  fill: #f2b84b;
+  stroke: var(--blue-dark);
+  stroke-width: 1.2;
+}
+
+.step-form-pencil-eraser {
+  fill: #e98a8a;
+  stroke: var(--blue-dark);
+  stroke-width: 1.2;
+}
+
 .step-row:hover .step-call-preview,
 .step-call-preview:focus-visible {
   transform: translateY(-6px) scale(1.04);
@@ -895,6 +943,52 @@ h3 {
 
   .step-call-preview-bark--right {
     animation-delay: 0.15s;
+  }
+
+  .step-form-pencil {
+    animation: form-pencil 5s ease-in-out infinite;
+  }
+
+  .step-form-line--1 { animation: form-line-1 5s linear infinite; }
+  .step-form-line--2 { animation: form-line-2 5s linear infinite; }
+  .step-form-line--3 { animation: form-line-3 5s linear infinite; }
+  .step-form-line--4 { animation: form-line-4 5s linear infinite; }
+
+  @keyframes form-pencil {
+    0% { transform: translate(33px, 36px); }
+    18% { transform: translate(67px, 36px); }
+    22% { transform: translate(33px, 48px); }
+    40% { transform: translate(67px, 48px); }
+    44% { transform: translate(33px, 60px); }
+    62% { transform: translate(67px, 60px); }
+    66% { transform: translate(33px, 72px); }
+    78% { transform: translate(55px, 72px); }
+    86%, 92% { transform: translate(62px, 64px); }
+    100% { transform: translate(33px, 36px); }
+  }
+
+  @keyframes form-line-1 {
+    0% { stroke-dashoffset: 1; opacity: 1; }
+    18%, 90% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  @keyframes form-line-2 {
+    0%, 22% { stroke-dashoffset: 1; opacity: 1; }
+    40%, 90% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  @keyframes form-line-3 {
+    0%, 44% { stroke-dashoffset: 1; opacity: 1; }
+    62%, 90% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  @keyframes form-line-4 {
+    0%, 66% { stroke-dashoffset: 1; opacity: 1; }
+    78%, 90% { stroke-dashoffset: 0; opacity: 1; }
+    96%, 100% { stroke-dashoffset: 0; opacity: 0; }
   }
 
   @keyframes call-ring-pulse {
@@ -2432,6 +2526,16 @@ h3 {
   color: var(--muted);
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.booking-time-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.booking-form-view .booking-time-note {
+  margin: -10px 0 18px;
 }
 
 .booking-modal-form {
