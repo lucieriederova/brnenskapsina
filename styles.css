@@ -1332,35 +1332,12 @@ h3 {
   color: var(--blue);
 }
 
-.about-hero.care-hero {
-  padding-bottom: calc(clamp(64px, 10vw, 110px) + var(--curve));
-}
-
-.care-hero .care-hero-photo {
-  background:
-    linear-gradient(160deg, rgba(40, 42, 103, 0.62), rgba(40, 42, 103, 0.3) 55%, rgba(40, 42, 103, 0.55)),
-    url("PUBLIC/icons/pece-hero.jpg") center 70% / cover no-repeat;
-}
-
-.care-hero .eyebrow {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.care-hero-lead {
-  max-width: 520px;
-  margin: 18px 0 0;
-  color: rgba(255, 255, 255, 0.92);
-  font-family: "Superbusy Activity Text", "Trebuchet MS", cursive;
-  font-size: 1.1rem;
-  line-height: 1.55;
-}
-
-.care-section {
+.care-page h1 {
   position: relative;
   z-index: 1;
-  margin-top: calc(var(--curve) * -1);
-  border-radius: var(--curve) var(--curve) 0 0;
-  background: var(--paper);
+  max-width: none;
+  color: var(--blue);
+  font-size: clamp(2.1rem, 5.7vw, 5rem);
 }
 
 .care-jump {
