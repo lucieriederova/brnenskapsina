@@ -1429,6 +1429,11 @@ h3 {
   align-self: center;
 }
 
+/* Two portrait photos side by side, uncropped. */
+.care-collage--pair {
+  align-items: center;
+}
+
 /* Wide screens: text and photo side by side, alternating like "Jak to funguje?". */
 @media (min-width: 900px) {
   .care-row {
@@ -1448,6 +1453,15 @@ h3 {
   }
 
   .care-collage--stack img {
+    height: auto;
+  }
+
+  .care-collage--pair {
+    align-self: center;
+    grid-template-rows: none;
+  }
+
+  .care-collage--pair img {
     height: auto;
   }
 
