@@ -1394,15 +1394,48 @@ h3 {
   height: auto;
 }
 
+.care-collage {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  overflow: visible;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.care-collage figure {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(53, 56, 127, 0.12);
+}
+
+.care-collage img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.care-collage-wide {
+  grid-column: 1 / -1;
+}
+
 /* Wide screens: text and photo side by side, alternating like "Jak to funguje?". */
 @media (min-width: 900px) {
   .care-row {
-    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(24px, 3vw, 40px);
   }
 
-  .care-row:nth-of-type(even) {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  /* The collage fills the full height of the text card beside it. */
+  .care-collage {
+    align-self: stretch;
+    grid-template-rows: 3fr 2fr;
+  }
+
+  .care-collage img {
+    height: 100%;
+    object-fit: cover;
   }
 
   .care-side-photo {
