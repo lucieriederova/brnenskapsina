@@ -8,13 +8,13 @@ const O = { start: "14:00", end: "18:00", title: "Odpolední procházka", capaci
 const C = { start: "09:00", end: "17:00", title: "Celodenní procházka", capacity: 6 };
 
 export const WEEK_TEMPLATE = [
-  [C, O], // pondělí
-  [C], // úterý
-  [D, C, O], // středa
+  [C], // pondělí
+  [O], // úterý
+  [C], // středa
   [D], // čtvrtek
   [], // pátek
-  [D, C, O], // sobota
-  [D, C, O], // neděle
+  [C], // sobota
+  [D], // neděle
 ];
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;

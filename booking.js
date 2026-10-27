@@ -6,6 +6,7 @@
   const formViewEl = document.getElementById("booking-form-view");
   const formEl = document.getElementById("booking-slot-form");
   const successEl = document.getElementById("booking-form-success");
+  const questionnaireLinkEl = document.getElementById("booking-questionnaire-link");
   const slotTitleEl = document.getElementById("booking-slot-title");
   const slotMetaEl = document.getElementById("booking-slot-meta");
   const slotErrorEl = document.getElementById("booking-slot-error");
@@ -436,6 +437,8 @@
 
       if (res.status === 201) {
         invalidateAvailabilityCache();
+        const { questionnaireUrl } = await res.json().catch(() => ({}));
+        if (questionnaireLinkEl && questionnaireUrl) questionnaireLinkEl.href = questionnaireUrl;
         formEl.hidden = true;
         successEl.hidden = false;
       } else if (res.status === 409) {

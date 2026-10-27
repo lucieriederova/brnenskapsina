@@ -3055,3 +3055,36 @@ body.booking-modal-open {
   font-size: 0.96rem;
   line-height: 1.5;
 }
+
+.booking-form-success .booking-success-next {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.booking-success-later {
+  margin-left: 8px;
+  color: var(--blue);
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.questionnaire-intro {
+  width: min(560px, 100%);
+  margin: 0 auto 24px;
+  color: var(--ink);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.booking-form .questionnaire-section {
+  margin: 12px 0 0;
+  color: var(--blue);
+  font-size: 1.2rem;
+}
+
+.booking-form .questionnaire-section:first-child {
+  margin-top: 0;
+}

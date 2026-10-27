@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="PUBLIC/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="PUBLIC/favicon/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="PUBLIC/favicon/apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=3">
     <noscript>
       <style>
         .reveal { opacity: 1 !important; transform: none !important; }
@@ -622,8 +622,10 @@
             </form>
 
             <div class="booking-form-success" id="booking-form-success" hidden>
-              <p>Díky! Termín jsme pro vás předběžně zapsali a ozveme se vám na e-mail nebo telefon.</p>
-              <button type="button" class="button primary" data-booking-back>Zpět na kalendář</button>
+              <p>Díky! Termín jsme pro vás předběžně zapsali.</p>
+              <p class="booking-success-next">Ještě jeden krok: potřebujeme o vašem psovi pár informací. Dotazník můžete vyplnit hned, nebo později – odkaz jsme vám poslali i na e-mail.</p>
+              <a class="button primary" id="booking-questionnaire-link" href="dotaznik.html">Vyplnit dotazník</a>
+              <button type="button" class="button booking-success-later" data-booking-back>Vyplním později</button>
             </div>
           </div>
         </div>
@@ -633,6 +635,6 @@
     <button type="button" class="back-to-top" aria-label="Zpět nahoru">↑</button>
 
     <script src="script.js"></script>
-    <script src="booking.js"></script>
+    <script src="booking.js?v=2"></script>
   </body>
 </html>

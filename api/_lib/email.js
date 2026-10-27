@@ -23,25 +23,40 @@ function escapeHtml(str) {
   ));
 }
 
-// Best-effort notification — a failed email must never block a booking that
-// already made it into the database, so callers should not await this on
-// the critical path of the response.
-export async function notifyOwner(subject, lines) {
+// A line is either plain text or { text, href } for a link.
+function renderLine(line) {
+  if (typeof line === "string") return escapeHtml(line);
+  return `<a href="${escapeHtml(line.href)}">${escapeHtml(line.text)}</a>`;
+}
+
+// Best-effort sending — a failed email must never block a booking that
+// already made it into the database, so a failure is only logged.
+async function sendEmail(to, subject, lines, label) {
   const resend = getResendClient();
   if (!resend) {
-    console.warn("Resend not configured — skipping owner notification email");
+    console.warn(`Resend not configured — skipping ${label} email`);
     return;
   }
-  const html = `<p>${lines.map(escapeHtml).join("</p><p>")}</p>`;
+  const html = `<p>${lines.map(renderLine).join("</p><p>")}</p>`;
   try {
     // The Resend SDK resolves with { data, error } instead of throwing for
     // API-level failures (e.g. sandbox recipient restrictions), so both
     // paths must be checked to avoid silently swallowing a real failure.
-    const { error } = await resend.emails.send({ from: FROM, to: NOTIFY_TO, subject, html });
+    const { error } = await resend.emails.send({ from: FROM, to, subject, html });
     if (error) {
-      console.error("Resend rejected the notification email:", error);
+      console.error(`Resend rejected the ${label} email:`, error);
     }
   } catch (err) {
-    console.error("Failed to send notification email:", err);
+    console.error(`Failed to send ${label} email:`, err);
   }
+}
+
+export function notifyOwner(subject, lines) {
+  return sendEmail(NOTIFY_TO, subject, lines, "owner notification");
+}
+
+// Needs BOOKING_FROM_EMAIL on a domain verified in Resend — the
+// onboarding@resend.dev sandbox sender only delivers to the account owner.
+export function emailCustomer(to, subject, lines) {
+  return sendEmail(to, subject, lines, "customer");
 }

@@ -1,6 +1,9 @@
-import { sql } from "./_lib/db.js";
+import { randomUUID } from "node:crypto";
+import { sql, ensureSchema } from "./_lib/db.js";
 import { findSlot, isValidDateStr, isValidTimeStr, todayStr } from "./_lib/slots.js";
-import { notifyOwner } from "./_lib/email.js";
+import { notifyOwner, emailCustomer } from "./_lib/email.js";
+
+const SITE_URL = (process.env.SITE_URL || "https://brnenskapsina.cz").replace(/\/$/, "");
 
 function isValidEmail(value) {
   return typeof value === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -56,9 +59,13 @@ export default async function handler(req, res) {
         return;
       }
 
+      await ensureSchema();
+      const token = randomUUID();
+      const questionnaireUrl = `${SITE_URL}/dotaznik.html?t=${token}`;
+
       const rows = await sql`
-        INSERT INTO bookings (kind, slot_date, slot_start, slot_end, slot_title, dog_name, breed, name, phone, email, note)
-        SELECT 'slot', ${slotDate}, ${slotStart}, ${slotEnd}, ${template.title}, ${dogName}, ${breed}, ${name}, ${phone}, ${email}, ${note}
+        INSERT INTO bookings (kind, slot_date, slot_start, slot_end, slot_title, dog_name, breed, name, phone, email, note, questionnaire_token)
+        SELECT 'slot', ${slotDate}, ${slotStart}, ${slotEnd}, ${template.title}, ${dogName}, ${breed}, ${name}, ${phone}, ${email}, ${note}, ${token}
         WHERE (
           SELECT COUNT(*) FROM bookings
           WHERE kind = 'slot' AND slot_date = ${slotDate} AND slot_start = ${slotStart} AND slot_end = ${slotEnd}
@@ -80,10 +87,24 @@ export default async function handler(req, res) {
           `Telefon: ${phone || "—"}`,
           `E-mail: ${email}`,
           note ? `Poznámka: ${note}` : null,
+          "Dotazník o psovi zatím nevyplnil — přijde další e-mail, až ho vyplní.",
         ].filter(Boolean)
       );
 
-      res.status(201).json({ ok: true });
+      await emailCustomer(
+        email,
+        `Rezervace: ${template.title} ${slotDate}`,
+        [
+          `Dobrý den, ${name},`,
+          `děkujeme za rezervaci: ${template.title}, ${slotDate} ${slotStart}–${slotEnd}${dogName ? ` pro ${dogName}` : ""}.`,
+          "Než termín potvrdíme, potřebujeme o vašem psovi pár informací (kontakt na veterináře, adresu vyzvednutí, zdraví a povahu). Vyplnění zabere asi 5 minut:",
+          { text: "Vyplnit dotazník", href: questionnaireUrl },
+          "Jakmile dotazník projdeme, pošleme vám QR kód k platbě.",
+          "Brněnská psina",
+        ]
+      );
+
+      res.status(201).json({ ok: true, questionnaireUrl });
       return;
     }
 
