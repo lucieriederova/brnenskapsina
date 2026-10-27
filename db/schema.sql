@@ -33,7 +33,6 @@ create table if not exists questionnaires (
   owner_email text not null,
   emergency_name text not null,
   emergency_phone text not null,
-  billing_address text not null,
   dog_name text not null,
   breed text not null,
   age text not null,
@@ -44,5 +43,6 @@ create table if not exists questionnaires (
   health_notes text,
   behavior_notes text,
   pickup_address text not null,
+  pickup_time text not null,
   created_at timestamptz not null default now()
 );

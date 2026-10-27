@@ -12,6 +12,20 @@
     return `${d}. ${m}. ${y}`;
   }
 
+  // Pickup happens before the walk starts, so offer 15-minute steps from
+  // 90 minutes before the slot's start until 30 minutes after it.
+  function fillPickupTimes(slotStart) {
+    const select = formEl.elements.pickupTime;
+    const [h, m] = slotStart.split(":").map(Number);
+    const start = h * 60 + m;
+    const pad = (n) => String(n).padStart(2, "0");
+    for (let t = start - 90; t <= start + 30; t += 15) {
+      const option = document.createElement("option");
+      option.textContent = `${pad(Math.floor(t / 60))}:${pad(t % 60)}`;
+      select.appendChild(option);
+    }
+  }
+
   function showStatus(message, error) {
     statusEl.textContent = message;
     statusEl.classList.toggle("is-error", error);
@@ -41,6 +55,7 @@
         return;
       }
       const { slot, prefill } = data;
+      fillPickupTimes(slot.start);
       slotEl.textContent = `${slot.title}, ${formatDate(slot.date)} ${slot.start}–${slot.end}. Vyplnění zabere asi 5 minut.`;
       Object.entries(prefill).forEach(([name, value]) => {
         if (value && formEl.elements[name]) formEl.elements[name].value = value;

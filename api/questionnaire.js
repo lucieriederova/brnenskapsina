@@ -13,7 +13,6 @@ const FIELDS = [
   ["ownerEmail", "E-mail", true],
   ["emergencyName", "Nouzový kontakt – jméno", true],
   ["emergencyPhone", "Nouzový kontakt – telefon", true],
-  ["billingAddress", "Fakturační adresa", true],
   ["dogName", "Jméno psa", true],
   ["breed", "Plemeno", true],
   ["age", "Věk", true],
@@ -24,6 +23,7 @@ const FIELDS = [
   ["healthNotes", "Zdraví a strava", false],
   ["behaviorNotes", "Povaha a chování", false],
   ["pickupAddress", "Adresa vyzvednutí / předání", true],
+  ["pickupTime", "Preferovaný čas vyzvednutí", true],
 ];
 
 function clean(value) {
@@ -97,12 +97,12 @@ export default async function handler(req, res) {
     const rows = await sql`
       INSERT INTO questionnaires (
         booking_id, owner_name, owner_phone, owner_email, emergency_name, emergency_phone,
-        billing_address, dog_name, breed, age, weight, vet_name, vet_address, vet_phone,
-        health_notes, behavior_notes, pickup_address
+        dog_name, breed, age, weight, vet_name, vet_address, vet_phone,
+        health_notes, behavior_notes, pickup_address, pickup_time
       ) VALUES (
         ${booking.id}, ${v.ownerName}, ${v.ownerPhone}, ${v.ownerEmail}, ${v.emergencyName}, ${v.emergencyPhone},
-        ${v.billingAddress}, ${v.dogName}, ${v.breed}, ${v.age}, ${v.weight}, ${v.vetName}, ${v.vetAddress}, ${v.vetPhone},
-        ${v.healthNotes}, ${v.behaviorNotes}, ${v.pickupAddress}
+        ${v.dogName}, ${v.breed}, ${v.age}, ${v.weight}, ${v.vetName}, ${v.vetAddress}, ${v.vetPhone},
+        ${v.healthNotes}, ${v.behaviorNotes}, ${v.pickupAddress}, ${v.pickupTime}
       )
       ON CONFLICT (booking_id) DO NOTHING
       RETURNING id

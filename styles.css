@@ -2614,6 +2614,29 @@ h3 {
   text-transform: uppercase;
 }
 
+.booking-slot.is-past,
+.booking-agenda-row.is-past {
+  color: #9a9db8;
+  background: #f1f2f7;
+  border-left-color: #d3d5e4;
+  cursor: default;
+}
+
+.booking-slot.is-past .booking-slot-name,
+.booking-agenda-row.is-past .booking-agenda-title {
+  text-decoration: line-through;
+}
+
+.booking-slot.is-past .booking-slot-submeta,
+.booking-agenda-row.is-past .booking-agenda-cap {
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.booking-agenda-row.is-past .booking-agenda-time {
+  color: inherit;
+}
+
 .booking-slot-name {
   font-size: 0.82rem;
   font-weight: 800;

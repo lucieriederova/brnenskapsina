@@ -26,7 +26,6 @@ export function ensureSchema() {
         owner_email text NOT NULL,
         emergency_name text NOT NULL,
         emergency_phone text NOT NULL,
-        billing_address text NOT NULL,
         dog_name text NOT NULL,
         breed text NOT NULL,
         age text NOT NULL,
@@ -37,9 +36,13 @@ export function ensureSchema() {
         health_notes text,
         behavior_notes text,
         pickup_address text NOT NULL,
+        pickup_time text,
         created_at timestamptz NOT NULL DEFAULT now()
       )
     `;
+    // Billing address was dropped from the form, pickup time added.
+    await sql`ALTER TABLE questionnaires DROP COLUMN IF EXISTS billing_address`;
+    await sql`ALTER TABLE questionnaires ADD COLUMN IF NOT EXISTS pickup_time text`;
   })().catch((err) => {
     schemaReady = null;
     throw err;

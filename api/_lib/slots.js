@@ -42,8 +42,18 @@ export function findSlot(dateStr, start, end) {
   return templateForDate(dateStr).find((s) => s.start === start && s.end === end) || null;
 }
 
-export function todayStr() {
-  const d = new Date();
-  const pad = (n) => String(n).padStart(2, "0");
-  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+// Wall-clock "YYYY-MM-DD HH:MM" in Brno, independent of the server's timezone.
+function pragueNowStr() {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "Europe/Prague",
+      year: "numeric", month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+    }).formatToParts(new Date()).map((p) => [p.type, p.value])
+  );
+  return `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`;
+}
+
+export function hasStarted(dateStr, start) {
+  return `${dateStr} ${start}` <= pragueNowStr();
 }

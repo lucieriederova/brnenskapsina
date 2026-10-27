@@ -102,6 +102,14 @@
     loadedRanges.add(rangeKey);
   }
 
+  // A walk that has already started can't be booked any more.
+  function hasStarted(slot) {
+    const [h, m] = slot.start.split(":").map(Number);
+    const start = new Date(slot.date);
+    start.setHours(h, m, 0, 0);
+    return start <= new Date();
+  }
+
   function daySlots(date) {
     const key = dateKey(date);
     const list = slotsByDate.get(key) || [];
@@ -167,15 +175,17 @@
       const endMin = parseTime(slot.end);
       const top = ((startMin - HOUR_START * 60) / 60) * HOUR_HEIGHT;
       const height = ((endMin - startMin) / 60) * HOUR_HEIGHT;
+      const isPast = hasStarted(slot);
       const isFull = slot.booked >= slot.capacity;
+      const isClosed = isPast || isFull;
 
-      const block = document.createElement(isFull ? "div" : "button");
-      block.className = "booking-slot" + (isFull ? " is-full" : "");
+      const block = document.createElement(isClosed ? "div" : "button");
+      block.className = "booking-slot" + (isPast ? " is-past" : isFull ? " is-full" : "");
       block.style.top = `${top}px`;
       block.style.height = `${Math.max(height, 34)}px`;
       block.style.left = `calc(${(lanes[slotIndex] / laneCount) * 100}% + 4px)`;
       block.style.width = `calc(${100 / laneCount}% - 8px)`;
-      if (!isFull) {
+      if (!isClosed) {
         block.type = "button";
         block.addEventListener("click", () => openBookingForm(slot));
       }
@@ -186,7 +196,9 @@
 
       const meta = document.createElement("span");
       meta.className = "booking-slot-submeta";
-      if (isFull) {
+      if (isPast) {
+        meta.textContent = compact ? "Proběhlo" : `${slot.start}–${slot.end} · Proběhlo`;
+      } else if (isFull) {
         meta.textContent = compact ? "Obsazeno" : `${slot.start}–${slot.end} · Obsazeno`;
       } else {
         meta.textContent = compact
@@ -278,17 +290,19 @@
       group.appendChild(heading);
 
       slots.forEach((slot) => {
+        const isPast = hasStarted(slot);
         const isFull = slot.booked >= slot.capacity;
-        const row = document.createElement(isFull ? "div" : "button");
-        row.className = "booking-agenda-row" + (isFull ? " is-full" : "");
-        if (!isFull) {
+        const isClosed = isPast || isFull;
+        const row = document.createElement(isClosed ? "div" : "button");
+        row.className = "booking-agenda-row" + (isPast ? " is-past" : isFull ? " is-full" : "");
+        if (!isClosed) {
           row.type = "button";
           row.addEventListener("click", () => openBookingForm(slot));
         }
         row.innerHTML = `
           <span class="booking-agenda-time">${slot.start}–${slot.end}</span>
           <span class="booking-agenda-title">${slot.title}</span>
-          <span class="booking-agenda-cap">${isFull ? "Obsazeno" : `volno ${slot.capacity - slot.booked}/${slot.capacity}`}</span>
+          <span class="booking-agenda-cap">${isPast ? "Proběhlo" : isFull ? "Obsazeno" : `volno ${slot.capacity - slot.booked}/${slot.capacity}`}</span>
         `;
         group.appendChild(row);
       });

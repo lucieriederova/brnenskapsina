@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="PUBLIC/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="PUBLIC/favicon/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="PUBLIC/favicon/apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <noscript>
       <style>
         .reveal { opacity: 1 !important; transform: none !important; }
@@ -58,14 +58,14 @@
         <p class="questionnaire-intro" id="questionnaire-slot">Načítám rezervaci…</p>
 
         <form class="booking-form questionnaire-form" id="questionnaire-form" hidden>
-          <h2 class="full questionnaire-section">Majitel a fakturace</h2>
+          <h2 class="full questionnaire-section">Majitel</h2>
           <label>
             Jméno a příjmení
             <input type="text" name="ownerName" autocomplete="name" required>
           </label>
           <label>
             Telefon
-            <input type="tel" name="ownerPhone" autocomplete="tel" required>
+            <input type="tel" name="ownerPhone" autocomplete="tel" pattern="(\+\d{3} ?)?\d{3} ?\d{3} ?\d{3}" title="Zadejte telefon ve tvaru 601 234 567 nebo +420 601 234 567" required>
           </label>
           <label class="full">
             E-mail
@@ -77,11 +77,7 @@
           </label>
           <label>
             Nouzový kontakt – telefon
-            <input type="tel" name="emergencyPhone" autocomplete="off" required>
-          </label>
-          <label class="full">
-            Fakturační adresa
-            <input type="text" name="billingAddress" autocomplete="street-address" required>
+            <input type="tel" name="emergencyPhone" autocomplete="off" pattern="(\+\d{3} ?)?\d{3} ?\d{3} ?\d{3}" title="Zadejte telefon ve tvaru 601 234 567 nebo +420 601 234 567" required>
           </label>
 
           <h2 class="full questionnaire-section">Pes</h2>
@@ -95,11 +91,117 @@
           </label>
           <label>
             Věk
-            <input type="text" name="age" autocomplete="off" placeholder="např. 3 roky" required>
+            <select name="age" required>
+              <option value="">Vyberte věk</option>
+              <option>méně než 1 rok</option>
+              <option>1 rok</option>
+              <option>2 roky</option>
+              <option>3 roky</option>
+              <option>4 roky</option>
+              <option>5 let</option>
+              <option>6 let</option>
+              <option>7 let</option>
+              <option>8 let</option>
+              <option>9 let</option>
+              <option>10 let</option>
+              <option>11 let</option>
+              <option>12 let</option>
+              <option>13 let</option>
+              <option>14 let</option>
+              <option>15 let</option>
+              <option>16 let</option>
+              <option>17 let</option>
+              <option>18 let</option>
+              <option>19 let</option>
+              <option>20 let</option>
+            </select>
           </label>
           <label>
             Aktuální váha
-            <input type="text" name="weight" autocomplete="off" placeholder="např. 18 kg" required>
+            <select name="weight" required>
+              <option value="">Vyberte váhu</option>
+              <option>1 kg</option>
+              <option>2 kg</option>
+              <option>3 kg</option>
+              <option>4 kg</option>
+              <option>5 kg</option>
+              <option>6 kg</option>
+              <option>7 kg</option>
+              <option>8 kg</option>
+              <option>9 kg</option>
+              <option>10 kg</option>
+              <option>11 kg</option>
+              <option>12 kg</option>
+              <option>13 kg</option>
+              <option>14 kg</option>
+              <option>15 kg</option>
+              <option>16 kg</option>
+              <option>17 kg</option>
+              <option>18 kg</option>
+              <option>19 kg</option>
+              <option>20 kg</option>
+              <option>21 kg</option>
+              <option>22 kg</option>
+              <option>23 kg</option>
+              <option>24 kg</option>
+              <option>25 kg</option>
+              <option>26 kg</option>
+              <option>27 kg</option>
+              <option>28 kg</option>
+              <option>29 kg</option>
+              <option>30 kg</option>
+              <option>31 kg</option>
+              <option>32 kg</option>
+              <option>33 kg</option>
+              <option>34 kg</option>
+              <option>35 kg</option>
+              <option>36 kg</option>
+              <option>37 kg</option>
+              <option>38 kg</option>
+              <option>39 kg</option>
+              <option>40 kg</option>
+              <option>41 kg</option>
+              <option>42 kg</option>
+              <option>43 kg</option>
+              <option>44 kg</option>
+              <option>45 kg</option>
+              <option>46 kg</option>
+              <option>47 kg</option>
+              <option>48 kg</option>
+              <option>49 kg</option>
+              <option>50 kg</option>
+              <option>51 kg</option>
+              <option>52 kg</option>
+              <option>53 kg</option>
+              <option>54 kg</option>
+              <option>55 kg</option>
+              <option>56 kg</option>
+              <option>57 kg</option>
+              <option>58 kg</option>
+              <option>59 kg</option>
+              <option>60 kg</option>
+              <option>61 kg</option>
+              <option>62 kg</option>
+              <option>63 kg</option>
+              <option>64 kg</option>
+              <option>65 kg</option>
+              <option>66 kg</option>
+              <option>67 kg</option>
+              <option>68 kg</option>
+              <option>69 kg</option>
+              <option>70 kg</option>
+              <option>71 kg</option>
+              <option>72 kg</option>
+              <option>73 kg</option>
+              <option>74 kg</option>
+              <option>75 kg</option>
+              <option>76 kg</option>
+              <option>77 kg</option>
+              <option>78 kg</option>
+              <option>79 kg</option>
+              <option>80 kg</option>
+              <option>více než 80 kg</option>
+            </select>
           </label>
           <label>
             Veterinář (jméno)
@@ -107,7 +209,7 @@
           </label>
           <label>
             Telefon na veterináře
-            <input type="tel" name="vetPhone" autocomplete="off" required>
+            <input type="tel" name="vetPhone" autocomplete="off" pattern="(\+\d{3} ?)?\d{3} ?\d{3} ?\d{3}" title="Zadejte telefon ve tvaru 601 234 567 nebo +420 601 234 567" required>
           </label>
           <label class="full">
             Adresa veterinární kliniky
@@ -126,6 +228,12 @@
           <label class="full">
             Adresa vyzvednutí a předání
             <input type="text" name="pickupAddress" autocomplete="street-address" required>
+          </label>
+          <label class="full">
+            Preferovaný čas vyzvednutí
+            <select name="pickupTime" id="questionnaire-pickup-time" required>
+              <option value="">Vyberte čas</option>
+            </select>
           </label>
 
           <p class="form-status" id="questionnaire-status" role="alert" hidden></p>
@@ -215,7 +323,7 @@
               </label>
               <label>
                 Telefon
-                <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567" required>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567" pattern="(\+\d{3} ?)?\d{3} ?\d{3} ?\d{3}" title="Zadejte telefon ve tvaru 601 234 567 nebo +420 601 234 567" required>
               </label>
               <label class="full">
                 E-mail
@@ -244,7 +352,7 @@
     <button type="button" class="back-to-top" aria-label="Zpět nahoru">↑</button>
 
     <script src="script.js"></script>
-    <script src="booking.js?v=2"></script>
+    <script src="booking.js?v=3"></script>
     <script src="dotaznik.js"></script>
   </body>
 </html>

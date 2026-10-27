@@ -17,7 +17,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="PUBLIC/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="PUBLIC/favicon/favicon-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="PUBLIC/favicon/apple-touch-icon.png">
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
     <noscript>
       <style>
         .reveal { opacity: 1 !important; transform: none !important; }
@@ -228,7 +228,7 @@
               </label>
               <label>
                 Telefon
-                <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567" required>
+                <input type="tel" name="phone" autocomplete="tel" placeholder="+420 601 234 567" pattern="(\+\d{3} ?)?\d{3} ?\d{3} ?\d{3}" title="Zadejte telefon ve tvaru 601 234 567 nebo +420 601 234 567" required>
               </label>
               <label class="full">
                 E-mail
@@ -257,6 +257,6 @@
     <button type="button" class="back-to-top" aria-label="Zpět nahoru">↑</button>
 
     <script src="script.js"></script>
-    <script src="booking.js?v=2"></script>
+    <script src="booking.js?v=3"></script>
   </body>
 </html>

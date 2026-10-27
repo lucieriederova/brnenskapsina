@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { sql, ensureSchema } from "./_lib/db.js";
-import { findSlot, isValidDateStr, isValidTimeStr, todayStr } from "./_lib/slots.js";
+import { findSlot, hasStarted, isValidDateStr, isValidTimeStr } from "./_lib/slots.js";
 import { notifyOwner, emailCustomer } from "./_lib/email.js";
 
 const SITE_URL = (process.env.SITE_URL || "https://brnenskapsina.cz").replace(/\/$/, "");
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         res.status(400).json({ error: "invalid_slot" });
         return;
       }
-      if (slotDate < todayStr()) {
+      if (hasStarted(slotDate, slotStart)) {
         res.status(400).json({ error: "past_date" });
         return;
       }
@@ -100,6 +100,8 @@ export default async function handler(req, res) {
           "Než termín potvrdíme, potřebujeme o vašem psovi pár informací (kontakt na veterináře, adresu vyzvednutí, zdraví a povahu). Vyplnění zabere asi 5 minut:",
           { text: "Vyplnit dotazník", href: questionnaireUrl },
           "Jakmile dotazník projdeme, pošleme vám QR kód k platbě.",
+          "Pokud budete chtít rezervaci zrušit, napište nám prosím na brnenskapsina@gmail.com (stačí odpovědět na tento e-mail). Zrušení 48 a více hodin před procházkou je zdarma, 24–48 hodin předem účtujeme 30 % ceny a méně než 24 hodin předem 100 % ceny.",
+          { text: "Obchodní podmínky a storno", href: `${SITE_URL}/obchodni-podminky.html` },
           "Brněnská psina",
         ]
       );

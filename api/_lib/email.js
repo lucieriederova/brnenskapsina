@@ -31,7 +31,7 @@ function renderLine(line) {
 
 // Best-effort sending — a failed email must never block a booking that
 // already made it into the database, so a failure is only logged.
-async function sendEmail(to, subject, lines, label) {
+async function sendEmail(to, subject, lines, label, replyTo) {
   const resend = getResendClient();
   if (!resend) {
     console.warn(`Resend not configured — skipping ${label} email`);
@@ -42,7 +42,7 @@ async function sendEmail(to, subject, lines, label) {
     // The Resend SDK resolves with { data, error } instead of throwing for
     // API-level failures (e.g. sandbox recipient restrictions), so both
     // paths must be checked to avoid silently swallowing a real failure.
-    const { error } = await resend.emails.send({ from: FROM, to, subject, html });
+    const { error } = await resend.emails.send({ from: FROM, to, subject, html, ...(replyTo && { replyTo }) });
     if (error) {
       console.error(`Resend rejected the ${label} email:`, error);
     }
@@ -58,5 +58,5 @@ export function notifyOwner(subject, lines) {
 // Needs BOOKING_FROM_EMAIL on a domain verified in Resend — the
 // onboarding@resend.dev sandbox sender only delivers to the account owner.
 export function emailCustomer(to, subject, lines) {
-  return sendEmail(to, subject, lines, "customer");
+  return sendEmail(to, subject, lines, "customer", NOTIFY_TO);
 }
